@@ -151,7 +151,7 @@ namespace LIBChallanAPIs.Repositories
                 .Select(c => c.CityName)
                 .FirstOrDefaultAsync();
 
-            var addressTypeName = await _context.AddressTypes
+            var addressTypeName = await _context.EntityTypes
                 .Where(t => t.AddressTypeId == dto.AddressTypeId)
                 .Select(t => t.TypeName)
                 .FirstOrDefaultAsync();
@@ -195,7 +195,7 @@ namespace LIBChallanAPIs.Repositories
                 .Select(c => c.CityName)
                 .FirstOrDefaultAsync();
 
-            var addressTypeName = await _context.AddressTypes
+            var addressTypeName = await _context.EntityTypes
                 .Where(t => t.AddressTypeId == entity.AddressTypeId)
                 .Select(t => t.TypeName)
                 .FirstOrDefaultAsync();

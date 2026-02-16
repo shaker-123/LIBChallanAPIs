@@ -17,7 +17,7 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<AddressTypeDto?> GetByIdAsync(int id)
         {
-            return await _context.AddressTypes
+            return await _context.EntityTypes
                 .Where(x => x.Id == id)
                 .Select(x => new AddressTypeDto
                 {
@@ -32,7 +32,7 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<AddressTypeDto?> GetByCodeAsync(string code)
         {
-            return await _context.AddressTypes
+            return await _context.EntityTypes
                 .Where(x => x.TypeCode == code)
                 .Select(x => new AddressTypeDto
                 {
@@ -47,7 +47,7 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<IEnumerable<AddressTypeDto>> GetAllActiveAsync()
         {
-            return await _context.AddressTypes
+            return await _context.EntityTypes
                 .Where(x => x.IsActive)
                 .Select(x => new AddressTypeDto
                 {
@@ -62,7 +62,7 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<PagedResponse<AddressTypeDto>> GetAllPagedAsync(PagedRequest request)
         {
-            var query = _context.AddressTypes.AsQueryable();
+            var query = _context.EntityTypes.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(request.SearchValue))
             {
@@ -115,14 +115,14 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<AddressTypeDto> CreateAsync(AddressTypeCreateDto dto)
         {
-            var lastNumber = await _context.AddressTypes
+            var lastNumber = await _context.EntityTypes
                 .OrderByDescending(x => x.AddressTypeId)
                 .Select(x => x.AddressTypeId)
                 .FirstOrDefaultAsync();
 
             var nextNumber = lastNumber + 1;
 
-            var entity = new AddressType
+            var entity = new EntityType
             {
                 AddressTypeId = nextNumber,
                 TypeCode = $"ADRT{nextNumber:D3}",
@@ -131,7 +131,7 @@ namespace LIBChallanAPIs.Repositories
                 CreatedAt = DateTime.UtcNow
             };
 
-            _context.AddressTypes.Add(entity);
+            _context.EntityTypes.Add(entity);
             await _context.SaveChangesAsync();
 
             return new AddressTypeDto
@@ -148,7 +148,7 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<AddressTypeDto?> UpdateAsync(int id, AddressTypeUpdateDto dto)
         {
-            var entity = await _context.AddressTypes.FindAsync(id);
+            var entity = await _context.EntityTypes.FindAsync(id);
             if (entity == null) return null;
 
             entity.TypeName = dto.TypeName ?? entity.TypeName;
@@ -168,13 +168,13 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var entity = await _context.AddressTypes
+            var entity = await _context.EntityTypes
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (entity == null)
                 return false;
 
-            _context.AddressTypes.Remove(entity);
+            _context.EntityTypes.Remove(entity);
             await _context.SaveChangesAsync();
 
             return true;
@@ -182,7 +182,7 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<bool> ToggleActiveAsync(ToggleActiveDto dto)
         {
-            var entity = await _context.AddressTypes
+            var entity = await _context.EntityTypes
         .FirstOrDefaultAsync(x => x.AddressTypeId == dto.Id);
 
             if (entity == null)

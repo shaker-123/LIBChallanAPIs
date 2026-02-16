@@ -5,9 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.AddHttpContextAccessor();
 
@@ -31,6 +32,9 @@ builder.Services.AddScoped<IAddressTypeRepository, AddressTypeRepository>();
 builder.Services.AddScoped<IEntityMasterRepository, EntityMasterRepository>();
 builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
 builder.Services.AddScoped<IAddressMasterRepository, AddressMasterRepository>();
+builder.Services.AddScoped<IOrgLegalDetailsRepository, OrgLegalDetailsRepository>();
+//builder.Services.AddScoped<IServiceActivityRepository, ServiceActivityRepository>();
+
 
 builder.Services.AddAuthentication(options =>
 {
@@ -39,14 +43,19 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
+
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
+
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
@@ -54,8 +63,16 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    });
+
 builder.Services.AddEndpointsApiExplorer();
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -91,7 +108,25 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact", policy =>
+    {
+        policy
+            .AllowAnyOrigin()    
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithExposedHeaders(
+                "X-Total-Count",
+                "X-File-Name"
+            );
+    });
+});
+
+
 var app = builder.Build();
+
 
 
 app.UseSwagger();
@@ -101,6 +136,9 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger";
 });
 
+app.UseHttpsRedirection();
+
+app.UseCors("AllowReact"); 
 
 app.UseAuthentication();
 app.UseAuthorization();

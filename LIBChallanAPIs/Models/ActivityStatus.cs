@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LIBChallanAPIs.Models
 {
-    public class AddressType : BaseEntity
+    public class ActivityStatus : BaseEntity
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(10)]
-        public string? AddressTypeId { get; set; }  
+        public string StatusId { get; set; } = null!; 
 
-        public string TypeCode { get; set; } = string.Empty;
-
-        public string TypeName { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(50)]
+        public string StatusName { get; set; } = null!;
 
         public bool IsActive { get; set; } = true;
     }

@@ -304,3 +304,4 @@ D:\i-diligence\LIBChallanAPIs\LIBChallanAPIs\obj\Debug\net8.0\refint\LIBChallanA
 D:\i-diligence\LIBChallanAPIs\LIBChallanAPIs\obj\Debug\net8.0\LIBChallanAPIs.pdb
 D:\i-diligence\LIBChallanAPIs\LIBChallanAPIs\obj\Debug\net8.0\LIBChallanAPIs.genruntimeconfig.cache
 D:\i-diligence\LIBChallanAPIs\LIBChallanAPIs\obj\Debug\net8.0\ref\LIBChallanAPIs.dll
+D:\i-diligence\LIBChallanAPIs\LIBChallanAPIs\obj\Debug\net8.0\LIBChallanAPIs.sourcelink.json

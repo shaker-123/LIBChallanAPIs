@@ -2424,6 +2424,237 @@
         }
       }
     },
+    "/api/org-legal-details/{id}": {
+      "get": {
+        "tags": [
+          "OrgLegalDetails"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "OrgLegalDetails"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLegalDetailsUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLegalDetailsUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLegalDetailsUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "OrgLegalDetails"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/org-legal-details/paged": {
+      "post": {
+        "tags": [
+          "OrgLegalDetails"
+        ],
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SearchColumn",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SearchValue",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortColumn",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortDirection",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/RecordStatus"
+            }
+          },
+          {
+            "name": "Skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/org-legal-details/active": {
+      "get": {
+        "tags": [
+          "OrgLegalDetails"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/org-legal-details": {
+      "post": {
+        "tags": [
+          "OrgLegalDetails"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLegalDetailsCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLegalDetailsCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLegalDetailsCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/org-legal-details/toggle-active": {
+      "patch": {
+        "tags": [
+          "OrgLegalDetails"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToggleActiveDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToggleActiveDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToggleActiveDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/part-change-masters/{id}": {
       "get": {
         "tags": [
@@ -2689,6 +2920,37 @@
         }
       }
     },
+    "/api/service-activities": {
+      "post": {
+        "tags": [
+          "ServiceActivity"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceActivityCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceActivityCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceActivityCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/state-masters/{id}": {
       "get": {
         "tags": [
@@ -2881,6 +3143,40 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/user-roles/users-by-role/{roleName}": {
+      "get": {
+        "tags": [
+          "UserRole"
+        ],
+        "parameters": [
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/user-roles/fse-users": {
+      "get": {
+        "tags": [
+          "UserRole"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -3458,6 +3754,36 @@
         },
         "additionalProperties": false
       },
+      "BatteryCreateDto": {
+        "type": "object",
+        "properties": {
+          "batterySerial": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "warehouseId": {
+            "type": "string",
+            "nullable": true
+          },
+          "barcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "batteryIdInLIBSystem": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BatteryStatusCreateDto": {
         "type": "object",
         "properties": {
@@ -3840,6 +4166,73 @@
         },
         "additionalProperties": false
       },
+      "OrgLegalDetailsCreateDto": {
+        "required": [
+          "cinNumber",
+          "cityId",
+          "entityId",
+          "gstinNumber",
+          "panNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "gstinNumber": {
+            "maxLength": 15,
+            "minLength": 15,
+            "type": "string"
+          },
+          "cinNumber": {
+            "maxLength": 21,
+            "minLength": 21,
+            "type": "string"
+          },
+          "panNumber": {
+            "maxLength": 10,
+            "minLength": 10,
+            "type": "string"
+          },
+          "cityId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrgLegalDetailsUpdateDto": {
+        "type": "object",
+        "properties": {
+          "gstinNumber": {
+            "maxLength": 15,
+            "minLength": 15,
+            "type": "string",
+            "nullable": true
+          },
+          "cinNumber": {
+            "maxLength": 21,
+            "minLength": 21,
+            "type": "string",
+            "nullable": true
+          },
+          "panNumber": {
+            "maxLength": 10,
+            "minLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PartChangeMasterCreateDto": {
         "type": "object",
         "properties": {
@@ -3959,6 +4352,47 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ServiceActivityCreateDto": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "warehouseId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityAddressId": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "numberOfBatteriesOnSite": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfBatteriesOnSiteRTF": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "batteries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatteryCreateDto"
             },
             "nullable": true
           }

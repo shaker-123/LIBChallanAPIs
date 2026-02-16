@@ -110,12 +110,22 @@ namespace LIBChallanAPIs.Repositories
         public async Task<WarehouseDto> CreateAsync(WarehouseCreateDto dto)
         {
             var city = await _context.CityMasters
-                .Where(c => c.CityId == dto.CityId)
-                .Select(c => c.CityName)
-                .FirstOrDefaultAsync();
+        .Where(c => c.CityId == dto.CityId)
+        .Select(c => c.CityName)
+        .FirstOrDefaultAsync();
 
             if (city == null)
                 throw new ArgumentException("Invalid CityId");
+
+            var entityName = await _context.EntityMasters
+                .Where(e => e.EntityId == dto.EntityId)
+                .Select(e => e.EntityName)
+                .FirstOrDefaultAsync();
+
+            if (entityName == null)
+                throw new ArgumentException("Invalid EntityId");
+
+            var entityInitial = GetEntityInitial(entityName);
 
             var lastWarehouseId = await _context.Warehouses
                 .Where(w => w.WarehouseId!.StartsWith("WHS"))
@@ -133,7 +143,7 @@ namespace LIBChallanAPIs.Repositories
                 }
             }
 
-            var entity = new Warehouse
+            var warehouse = new Warehouse
             {
                 WarehouseId = $"WHS{nextNumber:D3}",
                 CityId = dto.CityId,
@@ -142,19 +152,21 @@ namespace LIBChallanAPIs.Repositories
                 CreatedAt = DateTime.UtcNow,
             };
 
-            _context.Warehouses.Add(entity);
+            _context.Warehouses.Add(warehouse);
             await _context.SaveChangesAsync();
 
-            entity.WarehouseCode = $"{city.Replace(" ", "")}-WH{entity.Id:D4}";
+            warehouse.WarehouseCode =
+                $"{entityInitial}-{city.Replace(" ", "")}-WH{warehouse.Id:D4}";
+
             await _context.SaveChangesAsync();
 
             return new WarehouseDto
             {
-                WarehouseId = entity.WarehouseId,
-                WarehouseCode = entity.WarehouseCode,
-                CityId = entity.CityId,
-                EntityId = entity.EntityId,
-                IsActive = entity.IsActive
+                WarehouseId = warehouse.WarehouseId,
+                WarehouseCode = warehouse.WarehouseCode,
+                CityId = warehouse.CityId,
+                EntityId = warehouse.EntityId,
+                IsActive = warehouse.IsActive
             };
         }
 
@@ -204,5 +216,17 @@ namespace LIBChallanAPIs.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
+
+        private string GetEntityInitial(string entityName)
+        {
+            var words = entityName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            if (words.Length == 1)
+                return words[0].Substring(0, Math.Min(3, words[0].Length)).ToUpper();
+
+            return string.Concat(words.Select(w => w[0])).ToUpper();
+        }
+
     }
 }

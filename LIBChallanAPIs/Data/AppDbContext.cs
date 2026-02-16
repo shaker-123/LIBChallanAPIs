@@ -30,13 +30,19 @@ public class AppDbContext : DbContext
     public DbSet<CorrectiveAction> CorrectiveActions { get; set; }
     public DbSet<PartChangeMaster> PartChangeMasters { get; set; }
     public DbSet<BatteryStatus> BatteryStatuses { get; set; }
-    public DbSet<AddressType> AddressTypes { get; set; }
+    public DbSet<EntityType> EntityTypes { get; set; }
 
     public DbSet<EntityMaster> EntityMasters { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
     public DbSet<AddressMaster> AddressMasters { get; set; }
 
     public DbSet<OrgLegalDetail> OrgLegalDetails { get; set; }
+
+    //public DbSet<ActivityStatus> ActivityStatus { get; set; }
+    //public DbSet<BatteryTran> BatteryTrans { get; set;  }
+
+    //public DbSet<ServiceActivity> ServiceActivities { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -132,7 +138,7 @@ public class AppDbContext : DbContext
             .HasIndex(w => w.WarehouseId)
             .IsUnique();
 
-        modelBuilder.Entity<AddressType>()
+        modelBuilder.Entity<EntityType>()
             .HasIndex(a => a.AddressTypeId)
             .IsUnique();
 
@@ -441,11 +447,11 @@ public class AppDbContext : DbContext
         );
 
 
-        modelBuilder.Entity<AddressType>().HasData(
-            new AddressType { Id = 1, AddressTypeId = "ADRT01", TypeCode = "CUSTOMER_WH", TypeName = "Customer Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
-            new AddressType { Id = 2, AddressTypeId = "ADRT02", TypeCode = "DELHI_WH", TypeName = "DELHI Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
-            new AddressType { Id = 3, AddressTypeId = "ADRT03", TypeCode = "PLANT_WH", TypeName = "Plant Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
-            new AddressType { Id = 4, AddressTypeId = "ADRT04", TypeCode = "CUSTOMER_MN", TypeName = "Customer Main", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" });
+        modelBuilder.Entity<EntityType>().HasData(
+            new EntityType { Id = 1, AddressTypeId = "ADRT01", TypeCode = "CUSTOMER_WH", TypeName = "Customer Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
+            new EntityType { Id = 2, AddressTypeId = "ADRT02", TypeCode = "DELHI_WH", TypeName = "DELHI Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
+            new EntityType { Id = 3, AddressTypeId = "ADRT03", TypeCode = "PLANT_WH", TypeName = "Plant Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
+            new EntityType { Id = 4, AddressTypeId = "ADRT04", TypeCode = "CUSTOMER_MN", TypeName = "Customer Main", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" });
 
 
         modelBuilder.Entity<EntityMaster>().HasData(
@@ -471,6 +477,12 @@ public class AppDbContext : DbContext
             new OrgLegalDetail { Id = 1, LegalId = "OLD001", EntityId = "ETM001", GSTINNumber = "27ABCDE1234F1Z5", CINNumber = "L12345MH2020PTC123456", PANNumber = "ABCDE1234F", CityId = "CTM004", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
             new OrgLegalDetail { Id = 2, LegalId = "OLD002", EntityId = "ETM002", GSTINNumber = "29ABCDE5678G1Z6", CINNumber = "L23456DL2021PTC654321", PANNumber = "ABCDE5678G", CityId = "CTM001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
             new OrgLegalDetail { Id = 5, LegalId = "OLD003", EntityId = "ETM002", GSTINNumber = "36ABCDE7777K1Z9", CINNumber = "L56789TS2024PTC555666", PANNumber = "ABCDE7777K", CityId = "CTM016", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
+
+
+        modelBuilder.Entity<ActivityStatus>().HasData(
+                new ActivityStatus { Id = 1, StatusId = "ACT001", StatusName = "Open", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                new ActivityStatus { Id = 2, StatusId = "ACT002", StatusName = "InProgress", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                new ActivityStatus { Id = 3, StatusId = "ACT003", StatusName = "Closed", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
 
 
         base.OnModelCreating(modelBuilder);

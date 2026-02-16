@@ -30,7 +30,7 @@ public class AddressMaster : BaseEntity
 
     public bool IsActive { get; set; } = true;
 
-    public virtual AddressType? AddressType { get; set; }
+    public virtual EntityType? AddressType { get; set; }
     public virtual CityMaster? City { get; set; }
     public virtual EntityMaster? Entity { get; set; }
     public virtual Warehouse? Warehouse { get; set; }

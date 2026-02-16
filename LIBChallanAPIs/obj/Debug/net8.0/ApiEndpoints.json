@@ -1527,6 +1527,152 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LIBChallanAPIs.Controllers.OrgLegalDetailsController",
+    "Method": "Create",
+    "RelativePath": "api/org-legal-details",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "OrgLegalDetailsCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.OrgLegalDetailsController",
+    "Method": "GetById",
+    "RelativePath": "api/org-legal-details/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.OrgLegalDetailsController",
+    "Method": "Update",
+    "RelativePath": "api/org-legal-details/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "OrgLegalDetailsUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.OrgLegalDetailsController",
+    "Method": "Delete",
+    "RelativePath": "api/org-legal-details/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.OrgLegalDetailsController",
+    "Method": "GetAllActive",
+    "RelativePath": "api/org-legal-details/active",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.OrgLegalDetailsController",
+    "Method": "GetAllPaged",
+    "RelativePath": "api/org-legal-details/paged",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.OrgLegalDetailsController",
+    "Method": "ToggleActive",
+    "RelativePath": "api/org-legal-details/toggle-active",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "LIBChallanAPIs.DTOs.ToggleActiveDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LIBChallanAPIs.Controllers.PartChangeMastersController",
     "Method": "Create",
     "RelativePath": "api/part-change-masters",
@@ -1699,6 +1845,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LIBChallanAPIs.Controllers.ServiceActivityController",
+    "Method": "Create",
+    "RelativePath": "api/service-activities",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "LIBChallanAPIs.DTOs.ServiceActivityCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LIBChallanAPIs.Controllers.StateMastersController",
     "Method": "Create",
     "RelativePath": "api/state-masters",
@@ -1817,6 +1979,16 @@
   },
   {
     "ContainingType": "UserRoleController",
+    "Method": "GetFSEUsers",
+    "RelativePath": "api/user-roles/fse-users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserRoleController",
     "Method": "GetAllUserList",
     "RelativePath": "api/user-roles/GetAllUserList",
     "HttpMethod": "GET",
@@ -1834,6 +2006,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "UserRoleController",
+    "Method": "GetUsersByRole",
+    "RelativePath": "api/user-roles/users-by-role/{roleName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "LIBChallanAPIs.Controllers.UserTypesController",
