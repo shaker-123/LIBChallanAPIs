@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LIBChallanAPIs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+779cee484a8c3f04372b0486eaa91df5a975ac31")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46e51ada01f92281874b56fe7ced1fc45e12af4a")]
 [assembly: System.Reflection.AssemblyProductAttribute("LIBChallanAPIs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LIBChallanAPIs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

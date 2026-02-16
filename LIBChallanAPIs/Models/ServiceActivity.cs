@@ -47,9 +47,6 @@ namespace LIBChallanAPIs.Models
         [ForeignKey(nameof(WarehouseId))]
         public virtual Warehouse? Warehouse { get; set; }
 
-        [ForeignKey(nameof(ActivityAddressId))]
-        public virtual AddressMaster? ActivityAddress { get; set; }
-
         [ForeignKey(nameof(StatusId))]
         public virtual ActivityStatus? Status { get; set; }
 

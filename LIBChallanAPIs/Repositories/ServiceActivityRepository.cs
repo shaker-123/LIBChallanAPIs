@@ -44,7 +44,6 @@
 //                    ActivityEngineerId = loggedInUserId,
 //                    EntityId = dto.EntityId,
 //                    WarehouseId = dto.WarehouseId,
-//                    ActivityAddressId = dto.ActivityAddressId,
 //                    StatusId = dto.StatusId,
 //                    ActivityDate = dto.ActivityDate,
 //                    NumberOfBatteriesOnSite = dto.NumberOfBatteriesOnSite,
@@ -111,4 +110,4 @@
 
 //    }
 
-//    }
+//}

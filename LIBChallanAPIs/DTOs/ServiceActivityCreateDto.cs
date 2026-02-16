@@ -4,7 +4,6 @@
     {
         public string EntityId { get; set; } = null!;
         public string WarehouseId { get; set; } = null!;
-        public string ActivityAddressId { get; set; } = null!;
         public string StatusId { get; set; } = null!;
 
      
