@@ -17,14 +17,18 @@ public class JwtService : IJwtService
 
     public async Task<LoginResponseDto> GenerateToken(AppUser user)
     {
+        if (user == null)
+            throw new ArgumentNullException(nameof(user));
+
         var roles = await _context.MasterUserRoles
-            .Where(x => x.UserId == user.UserId)
-            .Select(x => x.Role.RoleName)
+            .Where(x => x.UserRefId == user.Id) 
+            .Include(x => x.Role)               
+            .Select(x => x.Role.RoleName)       
             .ToListAsync();
 
         var claims = new List<Claim>
         {
-            new Claim("UserId", user.UserId.ToString()),
+            new Claim("UserId", user.UserId),          
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
@@ -52,7 +56,7 @@ public class JwtService : IJwtService
         {
             Token = token,
             Expiration = expires,
-            UserId = user.UserId,
+            UserId = user.UserId, 
             Name = user.FullName,
             Roles = roles
         };

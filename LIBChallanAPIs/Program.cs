@@ -1,3 +1,5 @@
+using LIBChallanAPIs.IRepositories;
+using LIBChallanAPIs.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -15,8 +17,20 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 builder.Services.AddScoped<IJwtService, JwtService>();
-
-
+builder.Services.AddScoped<ICountryMasterRepository, CountryMasterRepository>();
+builder.Services.AddScoped<IStateMasterRepository, StateMasterRepository>();
+builder.Services.AddScoped<ICityMasterRepository, CityMasterRepository>();
+builder.Services.AddScoped<IGSTMasterRepository, GSTMasterRepository>();
+builder.Services.AddScoped<IGSTTypeMasterRepository, GSTTypeMasterRepository>();
+builder.Services.AddScoped<IDefectDetailsRepository, DefectDetailsRepository>();
+builder.Services.AddScoped<IUserTypeRepository, UserTypeRepository>();
+builder.Services.AddScoped<ICorrectiveActionRepository, CorrectiveActionRepository>();
+builder.Services.AddScoped<IPartChangeMasterRepository, PartChangeMasterRepository>();
+builder.Services.AddScoped<IBatteryStatusRepository, BatteryStatusRepository>();
+builder.Services.AddScoped<IAddressTypeRepository, AddressTypeRepository>();
+builder.Services.AddScoped<IEntityMasterRepository, EntityMasterRepository>();
+builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+builder.Services.AddScoped<IAddressMasterRepository, AddressMasterRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

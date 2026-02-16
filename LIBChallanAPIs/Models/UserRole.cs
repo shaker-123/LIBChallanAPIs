@@ -1,8 +1,13 @@
-﻿public class UserRole : BaseEntity
-{
-    public int UserId { get; set; }
-    public AppUser User { get; set; }
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-    public int RoleId { get; set; }
-    public Role Role { get; set; }
+public class UserRole : BaseEntity
+{
+    [Required]
+    public int UserRefId { get; set; }  
+    public virtual AppUser User { get; set; } = null!;
+
+    [Required]
+    public string RoleId { get; set; } = string.Empty;  
+    public virtual Role Role { get; set; } = null!;
 }

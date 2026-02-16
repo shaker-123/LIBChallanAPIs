@@ -21,19 +21,161 @@ namespace LIBChallanAPIs.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AppUser", b =>
+            modelBuilder.Entity("AddressMaster", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AddressId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("AddressLine1")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("AddressLine2")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("AddressTypeId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("CityId")
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EntityId")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarehouseId")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressTypeId");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("EntityId");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.ToTable("AddressMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressId = "ADR001",
+                            AddressLine1 = "123, Connaught Place",
+                            AddressLine2 = "Near India Gate",
+                            AddressTypeId = "ADRT02",
+                            CityId = "CTM001",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6418),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM001",
+                            IsActive = true,
+                            PostalCode = "110001",
+                            WarehouseId = "WHS001"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = "ADR002",
+                            AddressLine1 = "45, Rohini Sector 12",
+                            AddressTypeId = "ADRT02",
+                            CityId = "CTM002",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6423),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM002",
+                            IsActive = true,
+                            PostalCode = "110007",
+                            WarehouseId = "WHS002"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressId = "ADR003",
+                            AddressLine1 = "789, Andheri East",
+                            AddressLine2 = "Near Chhatrapati Complex",
+                            AddressTypeId = "ADRT03",
+                            CityId = "CTM004",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6427),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM003",
+                            IsActive = true,
+                            PostalCode = "400001",
+                            WarehouseId = "WHS003"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddressId = "ADR004",
+                            AddressLine1 = "56, Laxmi Nagar",
+                            AddressTypeId = "ADRT02",
+                            CityId = "CTM003",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6430),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM004",
+                            IsActive = true,
+                            PostalCode = "110016",
+                            WarehouseId = "WHS001"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddressId = "ADR005",
+                            AddressLine1 = "22, MG Road",
+                            AddressTypeId = "ADRT01",
+                            CityId = "CTM007",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6434),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM005",
+                            IsActive = true,
+                            PostalCode = "560001"
+                        });
+                });
+
+            modelBuilder.Entity("AppUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -60,39 +202,2539 @@ namespace LIBChallanAPIs.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("UserId");
+                    b.Property<int?>("UserTypeId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("UpdatedBy");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserName")
                         .IsUnique();
 
+                    b.HasIndex("UserTypeId");
+
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4551),
+                            CreatedBy = "System",
+                            Email = "superuser@system.com",
+                            FullName = "Ids User",
+                            IsActive = true,
+                            PasswordHash = new byte[] { 64, 134, 140, 119, 239, 133, 134, 172, 29, 254, 208, 51, 69, 93, 70, 240, 166, 5, 234, 189, 248, 101, 255, 181, 33, 60, 150, 251, 27, 102, 187, 135 },
+                            Phone = "9999999999",
+                            UserId = "URR001",
+                            UserName = "IdsUser"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4564),
+                            CreatedBy = "System",
+                            Email = "admin@Lib.com",
+                            FullName = "Lib Admin User",
+                            IsActive = true,
+                            PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 },
+                            Phone = "8888888888",
+                            UserId = "URR002",
+                            UserName = "LibAdminUser"
+                        });
                 });
 
-            modelBuilder.Entity("Role", b =>
+            modelBuilder.Entity("LIBChallanAPIs.Models.AddressType", b =>
                 {
-                    b.Property<int>("RoleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AddressTypeId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TypeCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressTypeId")
+                        .IsUnique();
+
+                    b.ToTable("AddressTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressTypeId = "ADRT01",
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            TypeCode = "CUSTOMER_WH",
+                            TypeName = "Customer Warehouse"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressTypeId = "ADRT02",
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            TypeCode = "DELHI_WH",
+                            TypeName = "DELHI Warehouse"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressTypeId = "ADRT03",
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            TypeCode = "PLANT_WH",
+                            TypeName = "Plant Warehouse"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddressTypeId = "ADRT04",
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            TypeCode = "CUSTOMER_MN",
+                            TypeName = "Customer Main"
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.BatteryStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("StatusId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("StatusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BatteryStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5873),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            StatusId = "BST001",
+                            StatusName = "Repaired"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5877),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            StatusId = "BST002",
+                            StatusName = "Return to Factory"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5879),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            StatusId = "BST003",
+                            StatusName = "Hold"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5881),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            StatusId = "BST004",
+                            StatusName = "Dead Battery"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5884),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            StatusId = "BST005",
+                            StatusName = "Opened at Battery Smart WH"
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.CityMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AreaCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CityId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StateId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId")
+                        .IsUnique();
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("CityMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AreaCode = "011",
+                            CityId = "CTM001",
+                            CityName = "New Delhi",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5054),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "110001",
+                            StateId = "STM029"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AreaCode = "011",
+                            CityId = "CTM002",
+                            CityName = "North Delhi",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5060),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "110007",
+                            StateId = "STM029"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AreaCode = "011",
+                            CityId = "CTM003",
+                            CityName = "South Delhi",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5063),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "110016",
+                            StateId = "STM029"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AreaCode = "022",
+                            CityId = "CTM004",
+                            CityName = "Mumbai",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5066),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "400001",
+                            StateId = "STM014"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AreaCode = "020",
+                            CityId = "CTM005",
+                            CityName = "Pune",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5069),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "411001",
+                            StateId = "STM014"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AreaCode = "0712",
+                            CityId = "CTM006",
+                            CityName = "Nagpur",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5148),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "440001",
+                            StateId = "STM014"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AreaCode = "080",
+                            CityId = "CTM007",
+                            CityName = "Bengaluru",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5152),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "560001",
+                            StateId = "STM011"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AreaCode = "0821",
+                            CityId = "CTM008",
+                            CityName = "Mysuru",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5154),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "570001",
+                            StateId = "STM011"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AreaCode = "044",
+                            CityId = "CTM009",
+                            CityName = "Chennai",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5157),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "600001",
+                            StateId = "STM023"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AreaCode = "0422",
+                            CityId = "CTM010",
+                            CityName = "Coimbatore",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5162),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "641001",
+                            StateId = "STM023"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AreaCode = "079",
+                            CityId = "CTM011",
+                            CityName = "Ahmedabad",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5165),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "380001",
+                            StateId = "STM007"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AreaCode = "0261",
+                            CityId = "CTM012",
+                            CityName = "Surat",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5168),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "395003",
+                            StateId = "STM007"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AreaCode = "033",
+                            CityId = "CTM013",
+                            CityName = "Kolkata",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5171),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "700001",
+                            StateId = "STM028"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AreaCode = "0522",
+                            CityId = "CTM014",
+                            CityName = "Lucknow",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5173),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "226001",
+                            StateId = "STM026"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AreaCode = "0512",
+                            CityId = "CTM015",
+                            CityName = "Kanpur",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5176),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "208001",
+                            StateId = "STM026"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AreaCode = "040",
+                            CityId = "CTM016",
+                            CityName = "Hyderabad",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5179),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "500001",
+                            StateId = "STM024"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AreaCode = "0141",
+                            CityId = "CTM017",
+                            CityName = "Jaipur",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5182),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "302001",
+                            StateId = "STM021"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AreaCode = "0755",
+                            CityId = "CTM018",
+                            CityName = "Bhopal",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5187),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "462001",
+                            StateId = "STM013"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AreaCode = "0731",
+                            CityId = "CTM019",
+                            CityName = "Indore",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5190),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PostalCode = "452001",
+                            StateId = "STM013"
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.CorrectiveAction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ActionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ActionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CorrectiveActions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActionId = "CRA001",
+                            ActionName = "Anderson connector screw fix",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5372),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ActionId = "CRA002",
+                            ActionName = "Battery Charged with wake up charger",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5375),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ActionId = "CRA003",
+                            ActionName = "Battery wake up with the charger",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5377),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ActionId = "CRA004",
+                            ActionName = "BMS reset & software update",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5379),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ActionId = "CRA005",
+                            ActionName = "CAN pin fixed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5381),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ActionId = "CRA006",
+                            ActionName = "Charging & Discharging done",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5383),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ActionId = "CRA007",
+                            ActionName = "Handle fixed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5386),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ActionId = "CRA008",
+                            ActionName = "Handle screw fixed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5388),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ActionId = "CRA009",
+                            ActionName = "IOT glass changed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5390),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ActionId = "CRA010",
+                            ActionName = "New connector clip fixed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5392),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ActionId = "CRA011",
+                            ActionName = "New Handle fixed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5394),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ActionId = "CRA012",
+                            ActionName = "RTF",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5396),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ActionId = "CRA013",
+                            ActionName = "Dead Battery",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5399),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ActionId = "CRA014",
+                            ActionName = "Top Screw fixed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5401),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ActionId = "CRA015",
+                            ActionName = "NTC fixed / Replaced",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5403),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ActionId = "CRA016",
+                            ActionName = "CAN wire fixed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5405),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ActionId = "CRA017",
+                            ActionName = "Fuse changed",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5407),
+                            CreatedBy = "URR002",
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.CountryMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Continent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrencyCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhoneCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryName")
+                        .IsUnique();
+
+                    b.ToTable("MasterCountries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Continent = "Asia",
+                            CountryId = "CNM001",
+                            CountryName = "India",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "INR",
+                            IsActive = true,
+                            PhoneCode = "+91"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Continent = "North America",
+                            CountryId = "CNM002",
+                            CountryName = "United States",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "USD",
+                            IsActive = false,
+                            PhoneCode = "+1"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Continent = "Europe",
+                            CountryId = "CNM003",
+                            CountryName = "United Kingdom",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "GBP",
+                            IsActive = false,
+                            PhoneCode = "+44"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Continent = "North America",
+                            CountryId = "CNM004",
+                            CountryName = "Canada",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "CAD",
+                            IsActive = false,
+                            PhoneCode = "+1"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Continent = "Oceania",
+                            CountryId = "CNM005",
+                            CountryName = "Australia",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "AUD",
+                            IsActive = false,
+                            PhoneCode = "+61"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Continent = "Europe",
+                            CountryId = "CNM006",
+                            CountryName = "Germany",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "EUR",
+                            IsActive = false,
+                            PhoneCode = "+49"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Continent = "Europe",
+                            CountryId = "CNM007",
+                            CountryName = "France",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "EUR",
+                            IsActive = false,
+                            PhoneCode = "+33"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Continent = "Asia",
+                            CountryId = "CNM008",
+                            CountryName = "Japan",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "JPY",
+                            IsActive = false,
+                            PhoneCode = "+81"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Continent = "Asia",
+                            CountryId = "CNM009",
+                            CountryName = "China",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "CNY",
+                            IsActive = false,
+                            PhoneCode = "+86"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Continent = "South America",
+                            CountryId = "CNM010",
+                            CountryName = "Brazil",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "BRL",
+                            IsActive = false,
+                            PhoneCode = "+55"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Continent = "North America",
+                            CountryId = "CNM011",
+                            CountryName = "Mexico",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "MXN",
+                            IsActive = false,
+                            PhoneCode = "+52"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Continent = "Europe/Asia",
+                            CountryId = "CNM012",
+                            CountryName = "Russia",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "RUB",
+                            IsActive = false,
+                            PhoneCode = "+7"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Continent = "Africa",
+                            CountryId = "CNM013",
+                            CountryName = "South Africa",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "ZAR",
+                            IsActive = false,
+                            PhoneCode = "+27"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Continent = "Asia",
+                            CountryId = "CNM014",
+                            CountryName = "United Arab Emirates",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "AED",
+                            IsActive = false,
+                            PhoneCode = "+971"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Continent = "Asia",
+                            CountryId = "CNM015",
+                            CountryName = "Saudi Arabia",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "SAR",
+                            IsActive = false,
+                            PhoneCode = "+966"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Continent = "Asia",
+                            CountryId = "CNM016",
+                            CountryName = "Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "SGD",
+                            IsActive = false,
+                            PhoneCode = "+65"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Continent = "Asia",
+                            CountryId = "CNM017",
+                            CountryName = "South Korea",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "KRW",
+                            IsActive = false,
+                            PhoneCode = "+82"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Continent = "Europe",
+                            CountryId = "CNM018",
+                            CountryName = "Italy",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "EUR",
+                            IsActive = false,
+                            PhoneCode = "+39"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Continent = "Europe",
+                            CountryId = "CNM019",
+                            CountryName = "Spain",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "EUR",
+                            IsActive = false,
+                            PhoneCode = "+34"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Continent = "Europe",
+                            CountryId = "CNM020",
+                            CountryName = "Netherlands",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            CurrencyCode = "EUR",
+                            IsActive = false,
+                            PhoneCode = "+31"
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.DefectDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DefectName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DefectTypeId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DefectDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5640),
+                            CreatedBy = "URR002",
+                            DefectName = "No issues",
+                            DefectTypeId = "DDT001",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5644),
+                            CreatedBy = "URR002",
+                            DefectName = "CAN Pin Backout",
+                            DefectTypeId = "DDT002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5646),
+                            CreatedBy = "URR002",
+                            DefectName = "NTC Issue",
+                            DefectTypeId = "DDT003",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5649),
+                            CreatedBy = "URR002",
+                            DefectName = "Cell Unbalance",
+                            DefectTypeId = "DDT004",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5651),
+                            CreatedBy = "URR002",
+                            DefectName = "Battery Deep Discharge",
+                            DefectTypeId = "DDT005",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5653),
+                            CreatedBy = "URR002",
+                            DefectName = "BMS Issue",
+                            DefectTypeId = "DDT006",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5657),
+                            CreatedBy = "URR002",
+                            DefectName = "String Issue",
+                            DefectTypeId = "DDT007",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5659),
+                            CreatedBy = "URR002",
+                            DefectName = "Handle Pin Missing",
+                            DefectTypeId = "DDT008",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5661),
+                            CreatedBy = "URR002",
+                            DefectName = "Already Marked as RTF",
+                            DefectTypeId = "DDT009",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5664),
+                            CreatedBy = "URR002",
+                            DefectName = "IOT Issue",
+                            DefectTypeId = "DDT010",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5666),
+                            CreatedBy = "URR002",
+                            DefectName = "IOT Glass Damage",
+                            DefectTypeId = "DDT011",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5668),
+                            CreatedBy = "URR002",
+                            DefectName = "CAN Communication Issue",
+                            DefectTypeId = "DDT012",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5760),
+                            CreatedBy = "URR002",
+                            DefectName = "Handle Missing",
+                            DefectTypeId = "DDT013",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5763),
+                            CreatedBy = "URR002",
+                            DefectName = "CAN Wire Damage",
+                            DefectTypeId = "DDT014",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5765),
+                            CreatedBy = "URR002",
+                            DefectName = "Water Ingress",
+                            DefectTypeId = "DDT015",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5767),
+                            CreatedBy = "URR002",
+                            DefectName = "Fuse Burn",
+                            DefectTypeId = "DDT016",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5769),
+                            CreatedBy = "URR002",
+                            DefectName = "Connector Clip Missing",
+                            DefectTypeId = "DDT017",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5771),
+                            CreatedBy = "URR002",
+                            DefectName = "Connector Damaged",
+                            DefectTypeId = "DDT018",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5773),
+                            CreatedBy = "URR002",
+                            DefectName = "CAN Wire Cut",
+                            DefectTypeId = "DDT019",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5775),
+                            CreatedBy = "URR002",
+                            DefectName = "Unbalance & IOT Glass Damage",
+                            DefectTypeId = "DDT020",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5778),
+                            CreatedBy = "URR002",
+                            DefectName = "Top Cover Screw Missing",
+                            DefectTypeId = "DDT021",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5780),
+                            CreatedBy = "URR002",
+                            DefectName = "BMS Sleep Mode",
+                            DefectTypeId = "DDT022",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5782),
+                            CreatedBy = "URR002",
+                            DefectName = "CAN Wire Broken",
+                            DefectTypeId = "DDT023",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5784),
+                            CreatedBy = "URR002",
+                            DefectName = "Anderson Connector Burn",
+                            DefectTypeId = "DDT024",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5786),
+                            CreatedBy = "URR002",
+                            DefectName = "Anderson Connector Screw Missing",
+                            DefectTypeId = "DDT025",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5788),
+                            CreatedBy = "URR002",
+                            DefectName = "Battery is Tempered",
+                            DefectTypeId = "DDT026",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5790),
+                            CreatedBy = "URR002",
+                            DefectName = "Already Repaired by IA",
+                            DefectTypeId = "DDT027",
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.EntityMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ContactPerson")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("EntityId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("EntityName")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mobile")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityId")
+                        .IsUnique();
+
+                    b.ToTable("EntityMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM001",
+                            EntityName = "Battery Smart Pvt Ltd",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM002",
+                            EntityName = "Upgrid Solutions Pvt Ltd",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM003",
+                            EntityName = "Mumbai Batteries Pvt Ltd",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM004",
+                            EntityName = "Global Eneergy Service Pvt Ltd",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM005",
+                            EntityName = "Bangalore Eneergy Solutions Pvt Ltd",
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.GSTMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EffectiveFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("EffectiveTo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GSTId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<decimal>("GSTPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("GSTSlabId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("GSTTypeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GSTSlabId");
+
+                    b.HasIndex("GSTTypeId");
+
+                    b.ToTable("GSTMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX001",
+                            GSTPercentage = 0m,
+                            GSTSlabId = "TXS001",
+                            GSTTypeId = "TXT001",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX002",
+                            GSTPercentage = 0m,
+                            GSTSlabId = "TXS001",
+                            GSTTypeId = "TXT002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX003",
+                            GSTPercentage = 0m,
+                            GSTSlabId = "TXS001",
+                            GSTTypeId = "TXT003",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX004",
+                            GSTPercentage = 2.5m,
+                            GSTSlabId = "TXS002",
+                            GSTTypeId = "TXT001",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX005",
+                            GSTPercentage = 2.5m,
+                            GSTSlabId = "TXS002",
+                            GSTTypeId = "TXT002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX006",
+                            GSTPercentage = 5m,
+                            GSTSlabId = "TXS002",
+                            GSTTypeId = "TXT003",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX007",
+                            GSTPercentage = 6m,
+                            GSTSlabId = "TXS003",
+                            GSTTypeId = "TXT001",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX008",
+                            GSTPercentage = 6m,
+                            GSTSlabId = "TXS003",
+                            GSTTypeId = "TXT002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX009",
+                            GSTPercentage = 12m,
+                            GSTSlabId = "TXS003",
+                            GSTTypeId = "TXT003",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX010",
+                            GSTPercentage = 9m,
+                            GSTSlabId = "TXS004",
+                            GSTTypeId = "TXT001",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX011",
+                            GSTPercentage = 9m,
+                            GSTSlabId = "TXS004",
+                            GSTTypeId = "TXT002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX012",
+                            GSTPercentage = 18m,
+                            GSTSlabId = "TXS004",
+                            GSTTypeId = "TXT003",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX013",
+                            GSTPercentage = 14m,
+                            GSTSlabId = "TXS005",
+                            GSTTypeId = "TXT001",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX014",
+                            GSTPercentage = 14m,
+                            GSTSlabId = "TXS005",
+                            GSTTypeId = "TXT002",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EffectiveFrom = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTId = "TAX015",
+                            GSTPercentage = 28m,
+                            GSTSlabId = "TXS005",
+                            GSTTypeId = "TXT003",
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.GSTSlabMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GSTSlabId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SlabCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GSTSlabMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5997),
+                            CreatedBy = "URR002",
+                            GSTSlabId = "TXS001",
+                            IsActive = true,
+                            SlabCode = "GST_0",
+                            TotalPercentage = 0m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6004),
+                            CreatedBy = "URR002",
+                            GSTSlabId = "TXS002",
+                            IsActive = true,
+                            SlabCode = "GST_5",
+                            TotalPercentage = 5m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6007),
+                            CreatedBy = "URR002",
+                            GSTSlabId = "TXS003",
+                            IsActive = true,
+                            SlabCode = "GST_12",
+                            TotalPercentage = 12m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6010),
+                            CreatedBy = "URR002",
+                            GSTSlabId = "TXS004",
+                            IsActive = true,
+                            SlabCode = "GST_18",
+                            TotalPercentage = 18m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6013),
+                            CreatedBy = "URR002",
+                            GSTSlabId = "TXS005",
+                            IsActive = true,
+                            SlabCode = "GST_28",
+                            TotalPercentage = 28m
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.GSTTypeMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GSTTypeCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("GSTTypeId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("GSTTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GSTTypeCode")
+                        .IsUnique();
+
+                    b.ToTable("GSTTypeMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTTypeCode = "CGST",
+                            GSTTypeId = "TXT001",
+                            GSTTypeName = "Central Goods and Services Tax",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTTypeCode = "SGST",
+                            GSTTypeId = "TXT002",
+                            GSTTypeName = "State Goods and Services Tax",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTTypeCode = "IGST",
+                            GSTTypeId = "TXT003",
+                            GSTTypeName = "Integrated Goods and Services Tax",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTTypeCode = "UTGST",
+                            GSTTypeId = "TXT004",
+                            GSTTypeName = "Union Territory Goods and Services Tax",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTTypeCode = "CESS",
+                            GSTTypeId = "TXT005",
+                            GSTTypeName = "GST Compensation Cess",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GSTTypeCode = "RCM",
+                            GSTTypeId = "TXT006",
+                            GSTTypeName = "Reverse Charge Mechanism",
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.PartChangeMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PartId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("PartName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PartChangeMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5525),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM001",
+                            PartName = "Anderson Bracket"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5528),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM002",
+                            PartName = "Anderson connector Screw"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5530),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM003",
+                            PartName = "Anderson SB 75"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5533),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM004",
+                            PartName = "Handle + Handle Screw"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5535),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM005",
+                            PartName = "Fuse"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5537),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM006",
+                            PartName = "Top Cover Screw - M3 x 16"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5539),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM007",
+                            PartName = "IOT Glass-Black"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5541),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM008",
+                            PartName = "IOT Glass-White"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5544),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM009",
+                            PartName = "NTC"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5546),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM010",
+                            PartName = "IOT Screw - M3 x 12"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5548),
+                            CreatedBy = "URR002",
+                            IsActive = true,
+                            PartId = "PCM011",
+                            PartName = "Handle Screw"
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.StateMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CountryId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GstCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Region")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StateId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("StateName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("StateName")
+                        .IsUnique();
+
+                    b.ToTable("StateMasters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "37",
+                            IsActive = true,
+                            Region = "South India",
+                            StateId = "STM001",
+                            StateName = "Andhra Pradesh"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "12",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM002",
+                            StateName = "Arunachal Pradesh"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "18",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM003",
+                            StateName = "Assam"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "10",
+                            IsActive = true,
+                            Region = "East India",
+                            StateId = "STM004",
+                            StateName = "Bihar"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "22",
+                            IsActive = true,
+                            Region = "Central India",
+                            StateId = "STM005",
+                            StateName = "Chhattisgarh"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "30",
+                            IsActive = true,
+                            Region = "West India",
+                            StateId = "STM006",
+                            StateName = "Goa"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "24",
+                            IsActive = true,
+                            Region = "West India",
+                            StateId = "STM007",
+                            StateName = "Gujarat"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "06",
+                            IsActive = true,
+                            Region = "North India",
+                            StateId = "STM008",
+                            StateName = "Haryana"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "02",
+                            IsActive = true,
+                            Region = "North India",
+                            StateId = "STM009",
+                            StateName = "Himachal Pradesh"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "20",
+                            IsActive = true,
+                            Region = "East India",
+                            StateId = "STM010",
+                            StateName = "Jharkhand"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "29",
+                            IsActive = true,
+                            Region = "South India",
+                            StateId = "STM011",
+                            StateName = "Karnataka"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "32",
+                            IsActive = true,
+                            Region = "South India",
+                            StateId = "STM012",
+                            StateName = "Kerala"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "23",
+                            IsActive = true,
+                            Region = "Central India",
+                            StateId = "STM013",
+                            StateName = "Madhya Pradesh"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "27",
+                            IsActive = true,
+                            Region = "West India",
+                            StateId = "STM014",
+                            StateName = "Maharashtra"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "14",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM015",
+                            StateName = "Manipur"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "17",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM016",
+                            StateName = "Meghalaya"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "15",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM017",
+                            StateName = "Mizoram"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "13",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM018",
+                            StateName = "Nagaland"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "21",
+                            IsActive = true,
+                            Region = "East India",
+                            StateId = "STM019",
+                            StateName = "Odisha"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "03",
+                            IsActive = true,
+                            Region = "North India",
+                            StateId = "STM020",
+                            StateName = "Punjab"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "08",
+                            IsActive = true,
+                            Region = "North India",
+                            StateId = "STM021",
+                            StateName = "Rajasthan"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "11",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM022",
+                            StateName = "Sikkim"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "33",
+                            IsActive = true,
+                            Region = "South India",
+                            StateId = "STM023",
+                            StateName = "Tamil Nadu"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "36",
+                            IsActive = true,
+                            Region = "South India",
+                            StateId = "STM024",
+                            StateName = "Telangana"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "16",
+                            IsActive = true,
+                            Region = "North East India",
+                            StateId = "STM025",
+                            StateName = "Tripura"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "09",
+                            IsActive = true,
+                            Region = "North India",
+                            StateId = "STM026",
+                            StateName = "Uttar Pradesh"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "05",
+                            IsActive = true,
+                            Region = "North India",
+                            StateId = "STM027",
+                            StateName = "Uttarakhand"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "19",
+                            IsActive = true,
+                            Region = "East India",
+                            StateId = "STM028",
+                            StateName = "West Bengal"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CountryId = "CNM001",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "URR002",
+                            GstCode = "07",
+                            IsActive = true,
+                            Region = "North India",
+                            StateId = "STM029",
+                            StateName = "Delhi"
+                        });
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.UserType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TypeId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("TypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "System administrator user",
+                            IsActive = true,
+                            TypeId = "UST001",
+                            TypeName = "ADMIN_USER"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Service / FSE engineer user",
+                            IsActive = true,
+                            TypeId = "UST002",
+                            TypeName = "SERVICE_USER"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Warehouse operation user",
+                            IsActive = true,
+                            TypeId = "UST003",
+                            TypeName = "WAREHOUSE_USER"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Plant operation user",
+                            IsActive = true,
+                            TypeId = "UST004",
+                            TypeName = "PLANT_USER"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "MIS and reporting user",
+                            IsActive = true,
+                            TypeId = "UST005",
+                            TypeName = "MIS_USER"
+                        });
+                });
+
+            modelBuilder.Entity("OrgLegalDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CINNumber")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
+
+                    b.Property<string>("CityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EntityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("GSTINNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LegalId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("PANNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("EntityId");
+
+                    b.ToTable("OrgLegalDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CINNumber = "L12345MH2020PTC123456",
+                            CityId = "CTM004",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6488),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM001",
+                            GSTINNumber = "27ABCDE1234F1Z5",
+                            IsActive = true,
+                            LegalId = "OLD001",
+                            PANNumber = "ABCDE1234F"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CINNumber = "L23456DL2021PTC654321",
+                            CityId = "CTM001",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6492),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM002",
+                            GSTINNumber = "29ABCDE5678G1Z6",
+                            IsActive = true,
+                            LegalId = "OLD002",
+                            PANNumber = "ABCDE5678G"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CINNumber = "L56789TS2024PTC555666",
+                            CityId = "CTM016",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6495),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM002",
+                            GSTINNumber = "36ABCDE7777K1Z9",
+                            IsActive = true,
+                            LegalId = "OLD003",
+                            PANNumber = "ABCDE7777K"
+                        });
+                });
+
+            modelBuilder.Entity("Role", b =>
+                {
+                    b.Property<string>("RoleId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("RoleName")
                         .IsRequired()
@@ -102,8 +2744,8 @@ namespace LIBChallanAPIs.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
 
@@ -112,77 +2754,375 @@ namespace LIBChallanAPIs.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = 1,
-                            CreatedAt = new DateTime(2026, 2, 5, 5, 43, 18, 854, DateTimeKind.Utc).AddTicks(7920),
-                            RoleName = "SUPER_USER"
+                            RoleId = "RLM001",
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Full system access",
+                            IsActive = true,
+                            RoleName = "SUPER_ROLE"
                         },
                         new
                         {
-                            RoleId = 2,
-                            CreatedAt = new DateTime(2026, 2, 5, 5, 43, 18, 854, DateTimeKind.Utc).AddTicks(7932),
-                            RoleName = "ADMIN"
+                            RoleId = "RLM002",
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Administrative access",
+                            IsActive = true,
+                            RoleName = "ADMIN_ROLE"
+                        },
+                        new
+                        {
+                            RoleId = "RLM003",
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Field Service Engineer role",
+                            IsActive = true,
+                            RoleName = "FSE_ROLE"
+                        },
+                        new
+                        {
+                            RoleId = "RLM004",
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Logistics and warehouse role",
+                            IsActive = true,
+                            RoleName = "LOGISTIC_ROLE"
+                        },
+                        new
+                        {
+                            RoleId = "RLM005",
+                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "MIS and reporting user",
+                            IsActive = true,
+                            RoleName = "MIS_ROLE"
                         });
                 });
 
             modelBuilder.Entity("UserRole", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("UserRefId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("UserRefId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("MasterUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserRefId = 1,
+                            RoleId = "RLM001",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4616),
+                            CreatedBy = "URR002"
+                        },
+                        new
+                        {
+                            UserRefId = 2,
+                            RoleId = "RLM002",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4618),
+                            CreatedBy = "URR002"
+                        });
+                });
+
+            modelBuilder.Entity("Warehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CityId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EntityId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarehouseCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarehouseId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("EntityId");
+
+                    b.HasIndex("WarehouseId")
+                        .IsUnique();
+
+                    b.ToTable("Warehouses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = "CTM001",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6359),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM001",
+                            IsActive = true,
+                            WarehouseCode = "NewDelhi-WH001",
+                            WarehouseId = "WHS001"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = "CTM002",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6363),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM002",
+                            IsActive = true,
+                            WarehouseCode = "NorthDelhi-WH002",
+                            WarehouseId = "WHS002"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = "CTM003",
+                            CreatedAt = new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6365),
+                            CreatedBy = "URR002",
+                            EntityId = "ETM003",
+                            IsActive = false,
+                            WarehouseCode = "Mumbai-WH003",
+                            WarehouseId = "WHS003"
+                        });
+                });
+
+            modelBuilder.Entity("AddressMaster", b =>
+                {
+                    b.HasOne("LIBChallanAPIs.Models.AddressType", "AddressType")
+                        .WithMany()
+                        .HasForeignKey("AddressTypeId")
+                        .HasPrincipalKey("AddressTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LIBChallanAPIs.Models.CityMaster", "City")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CityId")
+                        .HasPrincipalKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("LIBChallanAPIs.Models.EntityMaster", "Entity")
+                        .WithMany("Addresses")
+                        .HasForeignKey("EntityId")
+                        .HasPrincipalKey("EntityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Warehouse", "Warehouse")
+                        .WithMany()
+                        .HasForeignKey("WarehouseId")
+                        .HasPrincipalKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("AddressType");
+
+                    b.Navigation("City");
+
+                    b.Navigation("Entity");
+
+                    b.Navigation("Warehouse");
                 });
 
             modelBuilder.Entity("AppUser", b =>
                 {
-                    b.HasOne("AppUser", "CreatedByUser")
+                    b.HasOne("LIBChallanAPIs.Models.UserType", null)
+                        .WithMany("Users")
+                        .HasForeignKey("UserTypeId");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.CityMaster", b =>
+                {
+                    b.HasOne("LIBChallanAPIs.Models.StateMaster", "State")
+                        .WithMany("Cities")
+                        .HasForeignKey("StateId")
+                        .HasPrincipalKey("StateId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.GSTMaster", b =>
+                {
+                    b.HasOne("LIBChallanAPIs.Models.GSTSlabMaster", "GSTSlab")
+                        .WithMany("GSTDetails")
+                        .HasForeignKey("GSTSlabId")
+                        .HasPrincipalKey("GSTSlabId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LIBChallanAPIs.Models.GSTTypeMaster", "GSTType")
+                        .WithMany("GSTMasters")
+                        .HasForeignKey("GSTTypeId")
+                        .HasPrincipalKey("GSTTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("GSTSlab");
+
+                    b.Navigation("GSTType");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.StateMaster", b =>
+                {
+                    b.HasOne("LIBChallanAPIs.Models.CountryMaster", "Country")
+                        .WithMany("States")
+                        .HasForeignKey("CountryId")
+                        .HasPrincipalKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("OrgLegalDetail", b =>
+                {
+                    b.HasOne("LIBChallanAPIs.Models.CityMaster", "CityMaster")
+                        .WithMany("OrgLegalDetails")
+                        .HasForeignKey("CityId")
+                        .HasPrincipalKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LIBChallanAPIs.Models.EntityMaster", "Customer")
                         .WithMany()
-                        .HasForeignKey("CreatedBy");
+                        .HasForeignKey("EntityId")
+                        .HasPrincipalKey("EntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("AppUser", "UpdatedByUser")
-                        .WithMany()
-                        .HasForeignKey("UpdatedBy");
+                    b.Navigation("CityMaster");
 
-                    b.Navigation("CreatedByUser");
-
-                    b.Navigation("UpdatedByUser");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("UserRole", b =>
                 {
                     b.HasOne("Role", "Role")
-                        .WithMany()
+                        .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Warehouse", b =>
+                {
+                    b.HasOne("LIBChallanAPIs.Models.CityMaster", "CityM")
+                        .WithMany("Warehouses")
+                        .HasForeignKey("CityId")
+                        .HasPrincipalKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LIBChallanAPIs.Models.EntityMaster", "EntityM")
+                        .WithMany("Warehouses")
+                        .HasForeignKey("EntityId")
+                        .HasPrincipalKey("EntityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CityM");
+
+                    b.Navigation("EntityM");
+                });
+
+            modelBuilder.Entity("AppUser", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.CityMaster", b =>
+                {
+                    b.Navigation("Addresses");
+
+                    b.Navigation("OrgLegalDetails");
+
+                    b.Navigation("Warehouses");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.CountryMaster", b =>
+                {
+                    b.Navigation("States");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.EntityMaster", b =>
+                {
+                    b.Navigation("Addresses");
+
+                    b.Navigation("Warehouses");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.GSTSlabMaster", b =>
+                {
+                    b.Navigation("GSTDetails");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.GSTTypeMaster", b =>
+                {
+                    b.Navigation("GSTMasters");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.StateMaster", b =>
+                {
+                    b.Navigation("Cities");
+                });
+
+            modelBuilder.Entity("LIBChallanAPIs.Models.UserType", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Role", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

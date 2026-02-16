@@ -5,31 +5,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class AppUser : BaseEntity
 {
     [Key]
-    public int UserId { get; set; }
+    public int Id { get; set; } 
 
-    [Required]
-    [MaxLength(100)]
-    public string UserName { get; set; }
+    [Required, MaxLength(10)]
+    public string UserId { get; set; } = string.Empty;  
 
-    [Required]
-    [MaxLength(200)]
-    public string FullName { get; set; }
+    [Required, MaxLength(100)]
+    public string UserName { get; set; } = string.Empty;
+
+    [Required, MaxLength(200)]
+    public string FullName { get; set; } = string.Empty;
 
     [MaxLength(50)]
-    public string Phone { get; set; }
+    public string Phone { get; set; } = string.Empty;
 
     [MaxLength(100)]
-    public string Email { get; set; }
+    public string Email { get; set; } = string.Empty;
 
     [Required]
     public byte[] PasswordHash { get; set; }
 
     public bool IsActive { get; set; } = true;
 
-    
-    [ForeignKey(nameof(CreatedBy))]
-    public AppUser CreatedByUser { get; set; }
-
-    [ForeignKey(nameof(UpdatedBy))]
-    public AppUser UpdatedByUser { get; set; }
+    // Navigation
+    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

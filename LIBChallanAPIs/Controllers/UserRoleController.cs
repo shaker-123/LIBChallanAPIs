@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/user-roles")]
-[Authorize(Roles = "SUPER_USER,ADMIN")]
+[Authorize(Roles = "SUPER_ROLE,ADMIN_ROLE")]
 public class UserRoleController : ControllerBase
 {
     private readonly AppDbContext _context;
@@ -17,28 +17,37 @@ public class UserRoleController : ControllerBase
     [HttpPost("assign")]
     public async Task<IActionResult> AssignRole(AssignRoleDto dto)
     {
+        if (string.IsNullOrWhiteSpace(dto.UserId) || string.IsNullOrWhiteSpace(dto.RoleId))
+            return BadRequest("UserId and RoleId are required");
+
+        // Get user by business UserId
         var user = await _context.MasterUsers
             .FirstOrDefaultAsync(x => x.UserId == dto.UserId && x.IsActive);
 
         if (user == null)
             return NotFound("User not found");
 
+        // Get role by business RoleId
         var role = await _context.MasterRoles
-            .FirstOrDefaultAsync(r => r.RoleId == dto.RoleId);
+            .FirstOrDefaultAsync(r => r.RoleId == dto.RoleId && r.IsActive);
 
         if (role == null)
             return NotFound("Role does not exist");
 
+        // Check if role already assigned
         var alreadyAssigned = await _context.MasterUserRoles
-            .AnyAsync(x => x.UserId == dto.UserId && x.RoleId == role.RoleId);
+            .AnyAsync(x => x.UserRefId == user.Id && x.RoleId == role.RoleId);
 
         if (alreadyAssigned)
             return BadRequest("Role already assigned");
 
+        // Assign role
         _context.MasterUserRoles.Add(new UserRole
         {
-            UserId = dto.UserId,
-            RoleId = role.RoleId
+            UserRefId = user.Id,      // FK to AppUser.Id
+            RoleId = role.RoleId,      // string FK to Role.RoleId
+            CreatedAt = DateTime.UtcNow,
+            CreatedBy = null // TODO: set current user Id if available
         });
 
         await _context.SaveChangesAsync();
@@ -49,8 +58,8 @@ public class UserRoleController : ControllerBase
     [HttpGet("GetAllUserList")]
     public async Task<List<AppUser>> GetAllUserList()
     {
-        List<AppUser> dummyList = new List<AppUser>();
-        dummyList = await _context.MasterUsers.ToListAsync();
-        return dummyList;
+        return await _context.MasterUsers
+            .Where(u => u.IsActive)
+            .ToListAsync();
     }
 }
