@@ -8,20 +8,19 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LIBChallanAPIs.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalDBCreate01 : Migration
+    public partial class InitDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AddressTypes",
+                name: "ActivityStatus",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AddressTypeId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    TypeCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StatusId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    StatusName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -30,8 +29,8 @@ namespace LIBChallanAPIs.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AddressTypes", x => x.Id);
-                    table.UniqueConstraint("AK_AddressTypes_AddressTypeId", x => x.AddressTypeId);
+                    table.PrimaryKey("PK_ActivityStatus", x => x.Id);
+                    table.UniqueConstraint("AK_ActivityStatus_StatusId", x => x.StatusId);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,6 +50,7 @@ namespace LIBChallanAPIs.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BatteryStatuses", x => x.Id);
+                    table.UniqueConstraint("AK_BatteryStatuses_StatusId", x => x.StatusId);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,6 +112,27 @@ namespace LIBChallanAPIs.Migrations
                 {
                     table.PrimaryKey("PK_EntityMasters", x => x.Id);
                     table.UniqueConstraint("AK_EntityMasters_EntityId", x => x.EntityId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EntityTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AddressTypeId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    TypeCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EntityTypes", x => x.Id);
+                    table.UniqueConstraint("AK_EntityTypes_AddressTypeId", x => x.AddressTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -322,6 +343,7 @@ namespace LIBChallanAPIs.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.UniqueConstraint("AK_Users_UserId", x => x.UserId);
                     table.ForeignKey(
                         name: "FK_Users_UserTypes_UserTypeId",
                         column: x => x.UserTypeId,
@@ -479,12 +501,6 @@ namespace LIBChallanAPIs.Migrations
                 {
                     table.PrimaryKey("PK_AddressMasters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AddressMasters_AddressTypes_AddressTypeId",
-                        column: x => x.AddressTypeId,
-                        principalTable: "AddressTypes",
-                        principalColumn: "AddressTypeId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_AddressMasters_CityMasters_CityId",
                         column: x => x.CityId,
                         principalTable: "CityMasters",
@@ -497,6 +513,12 @@ namespace LIBChallanAPIs.Migrations
                         principalColumn: "EntityId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_AddressMasters_EntityTypes_AddressTypeId",
+                        column: x => x.AddressTypeId,
+                        principalTable: "EntityTypes",
+                        principalColumn: "AddressTypeId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_AddressMasters_Warehouses_WarehouseId",
                         column: x => x.WarehouseId,
                         principalTable: "Warehouses",
@@ -504,15 +526,113 @@ namespace LIBChallanAPIs.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ServiceActivities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ActivityId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ActivityEngineerId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    EntityId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    WarehouseId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    StatusId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ActivityDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    NumberOfBatteriesOnSite = table.Column<int>(type: "int", nullable: false),
+                    NumberOfBatteriesOnSiteRTF = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceActivities", x => x.Id);
+                    table.UniqueConstraint("AK_ServiceActivities_ActivityId", x => x.ActivityId);
+                    table.ForeignKey(
+                        name: "FK_ServiceActivities_ActivityStatus_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "ActivityStatus",
+                        principalColumn: "StatusId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ServiceActivities_EntityMasters_EntityId",
+                        column: x => x.EntityId,
+                        principalTable: "EntityMasters",
+                        principalColumn: "EntityId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ServiceActivities_Users_ActivityEngineerId",
+                        column: x => x.ActivityEngineerId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ServiceActivities_Warehouses_WarehouseId",
+                        column: x => x.WarehouseId,
+                        principalTable: "Warehouses",
+                        principalColumn: "WarehouseId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BatteryTrans",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BatteryTransId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ActivityId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    CurrentStatusId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    CustomerId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    WarehouseId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    BatterySerial = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BatteryIdInLIBSystem = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Barcode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BatteryTrans", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BatteryTrans_BatteryStatuses_CurrentStatusId",
+                        column: x => x.CurrentStatusId,
+                        principalTable: "BatteryStatuses",
+                        principalColumn: "StatusId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BatteryTrans_EntityMasters_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "EntityMasters",
+                        principalColumn: "EntityId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BatteryTrans_ServiceActivities_ActivityId",
+                        column: x => x.ActivityId,
+                        principalTable: "ServiceActivities",
+                        principalColumn: "ActivityId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BatteryTrans_Warehouses_WarehouseId",
+                        column: x => x.WarehouseId,
+                        principalTable: "Warehouses",
+                        principalColumn: "WarehouseId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
-                table: "AddressTypes",
-                columns: new[] { "Id", "AddressTypeId", "CreatedAt", "CreatedBy", "IsActive", "TypeCode", "TypeName", "UpdatedAt", "UpdatedBy" },
+                table: "ActivityStatus",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "IsActive", "StatusId", "StatusName", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "ADRT01", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "CUSTOMER_WH", "Customer Warehouse", null, null },
-                    { 2, "ADRT02", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "DELHI_WH", "DELHI Warehouse", null, null },
-                    { 3, "ADRT03", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "PLANT_WH", "Plant Warehouse", null, null },
-                    { 4, "ADRT04", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "CUSTOMER_MN", "Customer Main", null, null }
+                    { 1, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3455), "URR002", true, "ACT001", "Open", null, null },
+                    { 2, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3458), "URR002", true, "ACT002", "InProgress", null, null },
+                    { 3, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3460), "URR002", true, "ACT003", "Closed", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -520,11 +640,11 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "IsActive", "StatusId", "StatusName", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5873), "URR002", true, "BST001", "Repaired", null, null },
-                    { 2, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5877), "URR002", true, "BST002", "Return to Factory", null, null },
-                    { 3, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5879), "URR002", true, "BST003", "Hold", null, null },
-                    { 4, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5881), "URR002", true, "BST004", "Dead Battery", null, null },
-                    { 5, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5884), "URR002", true, "BST005", "Opened at Battery Smart WH", null, null }
+                    { 1, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2717), "URR002", true, "BST001", "Repaired", null, null },
+                    { 2, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2720), "URR002", true, "BST002", "Return to Factory", null, null },
+                    { 3, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2722), "URR002", true, "BST003", "Hold", null, null },
+                    { 4, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2725), "URR002", true, "BST004", "Dead Battery", null, null },
+                    { 5, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2727), "URR002", true, "BST005", "Opened at Battery Smart WH", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -532,23 +652,23 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "ActionId", "ActionName", "CreatedAt", "CreatedBy", "IsActive", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "CRA001", "Anderson connector screw fix", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5372), "URR002", true, null, null },
-                    { 2, "CRA002", "Battery Charged with wake up charger", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5375), "URR002", true, null, null },
-                    { 3, "CRA003", "Battery wake up with the charger", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5377), "URR002", true, null, null },
-                    { 4, "CRA004", "BMS reset & software update", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5379), "URR002", true, null, null },
-                    { 5, "CRA005", "CAN pin fixed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5381), "URR002", true, null, null },
-                    { 6, "CRA006", "Charging & Discharging done", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5383), "URR002", true, null, null },
-                    { 7, "CRA007", "Handle fixed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5386), "URR002", true, null, null },
-                    { 8, "CRA008", "Handle screw fixed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5388), "URR002", true, null, null },
-                    { 9, "CRA009", "IOT glass changed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5390), "URR002", true, null, null },
-                    { 10, "CRA010", "New connector clip fixed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5392), "URR002", true, null, null },
-                    { 11, "CRA011", "New Handle fixed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5394), "URR002", true, null, null },
-                    { 12, "CRA012", "RTF", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5396), "URR002", true, null, null },
-                    { 13, "CRA013", "Dead Battery", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5399), "URR002", true, null, null },
-                    { 14, "CRA014", "Top Screw fixed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5401), "URR002", true, null, null },
-                    { 15, "CRA015", "NTC fixed / Replaced", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5403), "URR002", true, null, null },
-                    { 16, "CRA016", "CAN wire fixed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5405), "URR002", true, null, null },
-                    { 17, "CRA017", "Fuse changed", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5407), "URR002", true, null, null }
+                    { 1, "CRA001", "Anderson connector screw fix", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2265), "URR002", true, null, null },
+                    { 2, "CRA002", "Battery Charged with wake up charger", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2269), "URR002", true, null, null },
+                    { 3, "CRA003", "Battery wake up with the charger", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2271), "URR002", true, null, null },
+                    { 4, "CRA004", "BMS reset & software update", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2273), "URR002", true, null, null },
+                    { 5, "CRA005", "CAN pin fixed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2276), "URR002", true, null, null },
+                    { 6, "CRA006", "Charging & Discharging done", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2278), "URR002", true, null, null },
+                    { 7, "CRA007", "Handle fixed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2287), "URR002", true, null, null },
+                    { 8, "CRA008", "Handle screw fixed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2291), "URR002", true, null, null },
+                    { 9, "CRA009", "IOT glass changed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2293), "URR002", true, null, null },
+                    { 10, "CRA010", "New connector clip fixed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2308), "URR002", true, null, null },
+                    { 11, "CRA011", "New Handle fixed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2311), "URR002", true, null, null },
+                    { 12, "CRA012", "RTF", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2318), "URR002", true, null, null },
+                    { 13, "CRA013", "Dead Battery", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2320), "URR002", true, null, null },
+                    { 14, "CRA014", "Top Screw fixed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2322), "URR002", true, null, null },
+                    { 15, "CRA015", "NTC fixed / Replaced", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2324), "URR002", true, null, null },
+                    { 16, "CRA016", "CAN wire fixed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2327), "URR002", true, null, null },
+                    { 17, "CRA017", "Fuse changed", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2329), "URR002", true, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -556,33 +676,33 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DefectName", "DefectTypeId", "IsActive", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5640), "URR002", "No issues", "DDT001", true, null, null },
-                    { 2, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5644), "URR002", "CAN Pin Backout", "DDT002", true, null, null },
-                    { 3, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5646), "URR002", "NTC Issue", "DDT003", true, null, null },
-                    { 4, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5649), "URR002", "Cell Unbalance", "DDT004", true, null, null },
-                    { 5, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5651), "URR002", "Battery Deep Discharge", "DDT005", true, null, null },
-                    { 6, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5653), "URR002", "BMS Issue", "DDT006", true, null, null },
-                    { 7, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5657), "URR002", "String Issue", "DDT007", true, null, null },
-                    { 8, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5659), "URR002", "Handle Pin Missing", "DDT008", true, null, null },
-                    { 9, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5661), "URR002", "Already Marked as RTF", "DDT009", true, null, null },
-                    { 10, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5664), "URR002", "IOT Issue", "DDT010", true, null, null },
-                    { 11, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5666), "URR002", "IOT Glass Damage", "DDT011", true, null, null },
-                    { 12, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5668), "URR002", "CAN Communication Issue", "DDT012", true, null, null },
-                    { 13, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5760), "URR002", "Handle Missing", "DDT013", true, null, null },
-                    { 14, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5763), "URR002", "CAN Wire Damage", "DDT014", true, null, null },
-                    { 15, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5765), "URR002", "Water Ingress", "DDT015", true, null, null },
-                    { 16, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5767), "URR002", "Fuse Burn", "DDT016", true, null, null },
-                    { 17, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5769), "URR002", "Connector Clip Missing", "DDT017", true, null, null },
-                    { 18, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5771), "URR002", "Connector Damaged", "DDT018", true, null, null },
-                    { 19, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5773), "URR002", "CAN Wire Cut", "DDT019", true, null, null },
-                    { 20, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5775), "URR002", "Unbalance & IOT Glass Damage", "DDT020", true, null, null },
-                    { 21, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5778), "URR002", "Top Cover Screw Missing", "DDT021", true, null, null },
-                    { 22, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5780), "URR002", "BMS Sleep Mode", "DDT022", true, null, null },
-                    { 23, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5782), "URR002", "CAN Wire Broken", "DDT023", true, null, null },
-                    { 24, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5784), "URR002", "Anderson Connector Burn", "DDT024", true, null, null },
-                    { 25, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5786), "URR002", "Anderson Connector Screw Missing", "DDT025", true, null, null },
-                    { 26, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5788), "URR002", "Battery is Tempered", "DDT026", true, null, null },
-                    { 27, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5790), "URR002", "Already Repaired by IA", "DDT027", true, null, null }
+                    { 1, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2560), "URR002", "No issues", "DDT001", true, null, null },
+                    { 2, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2563), "URR002", "CAN Pin Backout", "DDT002", true, null, null },
+                    { 3, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2565), "URR002", "NTC Issue", "DDT003", true, null, null },
+                    { 4, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2568), "URR002", "Cell Unbalance", "DDT004", true, null, null },
+                    { 5, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2570), "URR002", "Battery Deep Discharge", "DDT005", true, null, null },
+                    { 6, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2572), "URR002", "BMS Issue", "DDT006", true, null, null },
+                    { 7, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2574), "URR002", "String Issue", "DDT007", true, null, null },
+                    { 8, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2576), "URR002", "Handle Pin Missing", "DDT008", true, null, null },
+                    { 9, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2579), "URR002", "Already Marked as RTF", "DDT009", true, null, null },
+                    { 10, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2581), "URR002", "IOT Issue", "DDT010", true, null, null },
+                    { 11, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2583), "URR002", "IOT Glass Damage", "DDT011", true, null, null },
+                    { 12, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2585), "URR002", "CAN Communication Issue", "DDT012", true, null, null },
+                    { 13, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2588), "URR002", "Handle Missing", "DDT013", true, null, null },
+                    { 14, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2590), "URR002", "CAN Wire Damage", "DDT014", true, null, null },
+                    { 15, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2592), "URR002", "Water Ingress", "DDT015", true, null, null },
+                    { 16, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2594), "URR002", "Fuse Burn", "DDT016", true, null, null },
+                    { 17, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2596), "URR002", "Connector Clip Missing", "DDT017", true, null, null },
+                    { 18, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2598), "URR002", "Connector Damaged", "DDT018", true, null, null },
+                    { 19, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2605), "URR002", "CAN Wire Cut", "DDT019", true, null, null },
+                    { 20, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2607), "URR002", "Unbalance & IOT Glass Damage", "DDT020", true, null, null },
+                    { 21, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2609), "URR002", "Top Cover Screw Missing", "DDT021", true, null, null },
+                    { 22, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2611), "URR002", "BMS Sleep Mode", "DDT022", true, null, null },
+                    { 23, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2614), "URR002", "CAN Wire Broken", "DDT023", true, null, null },
+                    { 24, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2616), "URR002", "Anderson Connector Burn", "DDT024", true, null, null },
+                    { 25, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2618), "URR002", "Anderson Connector Screw Missing", "DDT025", true, null, null },
+                    { 26, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2620), "URR002", "Battery is Tempered", "DDT026", true, null, null },
+                    { 27, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2622), "URR002", "Already Repaired by IA", "DDT027", true, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -598,15 +718,26 @@ namespace LIBChallanAPIs.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "EntityTypes",
+                columns: new[] { "Id", "AddressTypeId", "CreatedAt", "CreatedBy", "IsActive", "TypeCode", "TypeName", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, "ADRT01", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "CUSTOMER_WH", "Customer Warehouse", null, null },
+                    { 2, "ADRT02", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "DELHI_WH", "DELHI Warehouse", null, null },
+                    { 3, "ADRT03", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "PLANT_WH", "Plant Warehouse", null, null },
+                    { 4, "ADRT04", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "URR002", true, "CUSTOMER_MN", "Customer Main", null, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "GSTSlabMasters",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "GSTSlabId", "IsActive", "SlabCode", "TotalPercentage", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5997), "URR002", "TXS001", true, "GST_0", 0m, null, null },
-                    { 2, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6004), "URR002", "TXS002", true, "GST_5", 5m, null, null },
-                    { 3, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6007), "URR002", "TXS003", true, "GST_12", 12m, null, null },
-                    { 4, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6010), "URR002", "TXS004", true, "GST_18", 18m, null, null },
-                    { 5, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6013), "URR002", "TXS005", true, "GST_28", 28m, null, null }
+                    { 1, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2895), "URR002", "TXS001", true, "GST_0", 0m, null, null },
+                    { 2, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2906), "URR002", "TXS002", true, "GST_5", 5m, null, null },
+                    { 3, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2909), "URR002", "TXS003", true, "GST_12", 12m, null, null },
+                    { 4, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2912), "URR002", "TXS004", true, "GST_18", 18m, null, null },
+                    { 5, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2915), "URR002", "TXS005", true, "GST_28", 28m, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -666,17 +797,17 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "IsActive", "PartId", "PartName", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5525), "URR002", true, "PCM001", "Anderson Bracket", null, null },
-                    { 2, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5528), "URR002", true, "PCM002", "Anderson connector Screw", null, null },
-                    { 3, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5530), "URR002", true, "PCM003", "Anderson SB 75", null, null },
-                    { 4, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5533), "URR002", true, "PCM004", "Handle + Handle Screw", null, null },
-                    { 5, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5535), "URR002", true, "PCM005", "Fuse", null, null },
-                    { 6, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5537), "URR002", true, "PCM006", "Top Cover Screw - M3 x 16", null, null },
-                    { 7, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5539), "URR002", true, "PCM007", "IOT Glass-Black", null, null },
-                    { 8, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5541), "URR002", true, "PCM008", "IOT Glass-White", null, null },
-                    { 9, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5544), "URR002", true, "PCM009", "NTC", null, null },
-                    { 10, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5546), "URR002", true, "PCM010", "IOT Screw - M3 x 12", null, null },
-                    { 11, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5548), "URR002", true, "PCM011", "Handle Screw", null, null }
+                    { 1, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2459), "URR002", true, "PCM001", "Anderson Bracket", null, null },
+                    { 2, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2463), "URR002", true, "PCM002", "Anderson connector Screw", null, null },
+                    { 3, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2465), "URR002", true, "PCM003", "Anderson SB 75", null, null },
+                    { 4, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2468), "URR002", true, "PCM004", "Handle + Handle Screw", null, null },
+                    { 5, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2470), "URR002", true, "PCM005", "Fuse", null, null },
+                    { 6, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2472), "URR002", true, "PCM006", "Top Cover Screw - M3 x 16", null, null },
+                    { 7, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2474), "URR002", true, "PCM007", "IOT Glass-Black", null, null },
+                    { 8, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2476), "URR002", true, "PCM008", "IOT Glass-White", null, null },
+                    { 9, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2479), "URR002", true, "PCM009", "NTC", null, null },
+                    { 10, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2481), "URR002", true, "PCM010", "IOT Screw - M3 x 12", null, null },
+                    { 11, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2483), "URR002", true, "PCM011", "Handle Screw", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -696,8 +827,8 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "Email", "FullName", "IsActive", "PasswordHash", "Phone", "UpdatedAt", "UpdatedBy", "UserId", "UserName", "UserTypeId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4551), "System", "superuser@system.com", "Ids User", true, new byte[] { 64, 134, 140, 119, 239, 133, 134, 172, 29, 254, 208, 51, 69, 93, 70, 240, 166, 5, 234, 189, 248, 101, 255, 181, 33, 60, 150, 251, 27, 102, 187, 135 }, "9999999999", null, null, "URR001", "IdsUser", null },
-                    { 2, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4564), "System", "admin@Lib.com", "Lib Admin User", true, new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, "8888888888", null, null, "URR002", "LibAdminUser", null }
+                    { 1, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1330), "System", "superuser@system.com", "Ids User", true, new byte[] { 64, 134, 140, 119, 239, 133, 134, 172, 29, 254, 208, 51, 69, 93, 70, 240, 166, 5, 234, 189, 248, 101, 255, 181, 33, 60, 150, 251, 27, 102, 187, 135 }, "9999999999", null, null, "URR001", "IdsUser", null },
+                    { 2, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1349), "System", "admin@Lib.com", "Lib Admin User", true, new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, "8888888888", null, null, "URR002", "LibAdminUser", null }
                 });
 
             migrationBuilder.InsertData(
@@ -727,8 +858,8 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "RoleId", "UserRefId", "CreatedAt", "CreatedBy", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { "RLM001", 1, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4616), "URR002", null, null },
-                    { "RLM002", 2, new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(4618), "URR002", null, null }
+                    { "RLM001", 1, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1434), "URR002", null, null },
+                    { "RLM002", 2, new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1437), "URR002", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -772,40 +903,40 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "AreaCode", "CityId", "CityName", "CreatedAt", "CreatedBy", "IsActive", "PostalCode", "StateId", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "011", "CTM001", "New Delhi", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5054), "URR002", true, "110001", "STM029", null, null },
-                    { 2, "011", "CTM002", "North Delhi", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5060), "URR002", true, "110007", "STM029", null, null },
-                    { 3, "011", "CTM003", "South Delhi", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5063), "URR002", true, "110016", "STM029", null, null },
-                    { 4, "022", "CTM004", "Mumbai", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5066), "URR002", true, "400001", "STM014", null, null },
-                    { 5, "020", "CTM005", "Pune", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5069), "URR002", true, "411001", "STM014", null, null },
-                    { 6, "0712", "CTM006", "Nagpur", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5148), "URR002", true, "440001", "STM014", null, null },
-                    { 7, "080", "CTM007", "Bengaluru", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5152), "URR002", true, "560001", "STM011", null, null },
-                    { 8, "0821", "CTM008", "Mysuru", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5154), "URR002", true, "570001", "STM011", null, null },
-                    { 9, "044", "CTM009", "Chennai", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5157), "URR002", true, "600001", "STM023", null, null },
-                    { 10, "0422", "CTM010", "Coimbatore", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5162), "URR002", true, "641001", "STM023", null, null },
-                    { 11, "079", "CTM011", "Ahmedabad", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5165), "URR002", true, "380001", "STM007", null, null },
-                    { 12, "0261", "CTM012", "Surat", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5168), "URR002", true, "395003", "STM007", null, null },
-                    { 13, "033", "CTM013", "Kolkata", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5171), "URR002", true, "700001", "STM028", null, null },
-                    { 14, "0522", "CTM014", "Lucknow", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5173), "URR002", true, "226001", "STM026", null, null },
-                    { 15, "0512", "CTM015", "Kanpur", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5176), "URR002", true, "208001", "STM026", null, null },
-                    { 16, "040", "CTM016", "Hyderabad", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5179), "URR002", true, "500001", "STM024", null, null },
-                    { 17, "0141", "CTM017", "Jaipur", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5182), "URR002", true, "302001", "STM021", null, null },
-                    { 18, "0755", "CTM018", "Bhopal", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5187), "URR002", true, "462001", "STM013", null, null },
-                    { 19, "0731", "CTM019", "Indore", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(5190), "URR002", true, "452001", "STM013", null, null }
+                    { 1, "011", "CTM001", "New Delhi", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1927), "URR002", true, "110001", "STM029", null, null },
+                    { 2, "011", "CTM002", "North Delhi", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1938), "URR002", true, "110007", "STM029", null, null },
+                    { 3, "011", "CTM003", "South Delhi", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1942), "URR002", true, "110016", "STM029", null, null },
+                    { 4, "022", "CTM004", "Mumbai", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1945), "URR002", true, "400001", "STM014", null, null },
+                    { 5, "020", "CTM005", "Pune", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1948), "URR002", true, "411001", "STM014", null, null },
+                    { 6, "0712", "CTM006", "Nagpur", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1952), "URR002", true, "440001", "STM014", null, null },
+                    { 7, "080", "CTM007", "Bengaluru", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1958), "URR002", true, "560001", "STM011", null, null },
+                    { 8, "0821", "CTM008", "Mysuru", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1961), "URR002", true, "570001", "STM011", null, null },
+                    { 9, "044", "CTM009", "Chennai", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1964), "URR002", true, "600001", "STM023", null, null },
+                    { 10, "0422", "CTM010", "Coimbatore", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1969), "URR002", true, "641001", "STM023", null, null },
+                    { 11, "079", "CTM011", "Ahmedabad", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1972), "URR002", true, "380001", "STM007", null, null },
+                    { 12, "0261", "CTM012", "Surat", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1976), "URR002", true, "395003", "STM007", null, null },
+                    { 13, "033", "CTM013", "Kolkata", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1979), "URR002", true, "700001", "STM028", null, null },
+                    { 14, "0522", "CTM014", "Lucknow", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1983), "URR002", true, "226001", "STM026", null, null },
+                    { 15, "0512", "CTM015", "Kanpur", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1991), "URR002", true, "208001", "STM026", null, null },
+                    { 16, "040", "CTM016", "Hyderabad", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1995), "URR002", true, "500001", "STM024", null, null },
+                    { 17, "0141", "CTM017", "Jaipur", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(1999), "URR002", true, "302001", "STM021", null, null },
+                    { 18, "0755", "CTM018", "Bhopal", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2006), "URR002", true, "462001", "STM013", null, null },
+                    { 19, "0731", "CTM019", "Indore", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(2010), "URR002", true, "452001", "STM013", null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AddressMasters",
                 columns: new[] { "Id", "AddressId", "AddressLine1", "AddressLine2", "AddressTypeId", "CityId", "CreatedAt", "CreatedBy", "EntityId", "IsActive", "PostalCode", "UpdatedAt", "UpdatedBy", "WarehouseId" },
-                values: new object[] { 5, "ADR005", "22, MG Road", null, "ADRT01", "CTM007", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6434), "URR002", "ETM005", true, "560001", null, null, null });
+                values: new object[] { 5, "ADR005", "22, MG Road", null, "ADRT01", "CTM007", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3316), "URR002", "ETM005", true, "560001", null, null, null });
 
             migrationBuilder.InsertData(
                 table: "OrgLegalDetails",
                 columns: new[] { "Id", "CINNumber", "CityId", "CreatedAt", "CreatedBy", "EntityId", "GSTINNumber", "IsActive", "LegalId", "PANNumber", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "L12345MH2020PTC123456", "CTM004", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6488), "URR002", "ETM001", "27ABCDE1234F1Z5", true, "OLD001", "ABCDE1234F", null, null },
-                    { 2, "L23456DL2021PTC654321", "CTM001", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6492), "URR002", "ETM002", "29ABCDE5678G1Z6", true, "OLD002", "ABCDE5678G", null, null },
-                    { 5, "L56789TS2024PTC555666", "CTM016", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6495), "URR002", "ETM002", "36ABCDE7777K1Z9", true, "OLD003", "ABCDE7777K", null, null }
+                    { 1, "L12345MH2020PTC123456", "CTM004", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3381), "URR002", "ETM001", "27ABCDE1234F1Z5", true, "OLD001", "ABCDE1234F", null, null },
+                    { 2, "L23456DL2021PTC654321", "CTM001", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3385), "URR002", "ETM002", "29ABCDE5678G1Z6", true, "OLD002", "ABCDE5678G", null, null },
+                    { 5, "L56789TS2024PTC555666", "CTM016", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3389), "URR002", "ETM002", "36ABCDE7777K1Z9", true, "OLD003", "ABCDE7777K", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -813,9 +944,9 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "CityId", "CreatedAt", "CreatedBy", "EntityId", "IsActive", "UpdatedAt", "UpdatedBy", "WarehouseCode", "WarehouseId" },
                 values: new object[,]
                 {
-                    { 1, "CTM001", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6359), "URR002", "ETM001", true, null, null, "NewDelhi-WH001", "WHS001" },
-                    { 2, "CTM002", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6363), "URR002", "ETM002", true, null, null, "NorthDelhi-WH002", "WHS002" },
-                    { 3, "CTM003", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6365), "URR002", "ETM003", false, null, null, "Mumbai-WH003", "WHS003" }
+                    { 1, "CTM001", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3232), "URR002", "ETM001", true, null, null, "NewDelhi-WH001", "WHS001" },
+                    { 2, "CTM002", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3236), "URR002", "ETM002", true, null, null, "NorthDelhi-WH002", "WHS002" },
+                    { 3, "CTM003", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3239), "URR002", "ETM003", false, null, null, "Mumbai-WH003", "WHS003" }
                 });
 
             migrationBuilder.InsertData(
@@ -823,11 +954,17 @@ namespace LIBChallanAPIs.Migrations
                 columns: new[] { "Id", "AddressId", "AddressLine1", "AddressLine2", "AddressTypeId", "CityId", "CreatedAt", "CreatedBy", "EntityId", "IsActive", "PostalCode", "UpdatedAt", "UpdatedBy", "WarehouseId" },
                 values: new object[,]
                 {
-                    { 1, "ADR001", "123, Connaught Place", "Near India Gate", "ADRT02", "CTM001", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6418), "URR002", "ETM001", true, "110001", null, null, "WHS001" },
-                    { 2, "ADR002", "45, Rohini Sector 12", null, "ADRT02", "CTM002", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6423), "URR002", "ETM002", true, "110007", null, null, "WHS002" },
-                    { 3, "ADR003", "789, Andheri East", "Near Chhatrapati Complex", "ADRT03", "CTM004", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6427), "URR002", "ETM003", true, "400001", null, null, "WHS003" },
-                    { 4, "ADR004", "56, Laxmi Nagar", null, "ADRT02", "CTM003", new DateTime(2026, 2, 14, 7, 26, 39, 416, DateTimeKind.Utc).AddTicks(6430), "URR002", "ETM004", true, "110016", null, null, "WHS001" }
+                    { 1, "ADR001", "123, Connaught Place", "Near India Gate", "ADRT02", "CTM001", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3301), "URR002", "ETM001", true, "110001", null, null, "WHS001" },
+                    { 2, "ADR002", "45, Rohini Sector 12", null, "ADRT02", "CTM002", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3306), "URR002", "ETM002", true, "110007", null, null, "WHS002" },
+                    { 3, "ADR003", "789, Andheri East", "Near Chhatrapati Complex", "ADRT03", "CTM004", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3309), "URR002", "ETM003", true, "400001", null, null, "WHS003" },
+                    { 4, "ADR004", "56, Laxmi Nagar", null, "ADRT02", "CTM003", new DateTime(2026, 2, 16, 12, 30, 57, 225, DateTimeKind.Utc).AddTicks(3312), "URR002", "ETM004", true, "110016", null, null, "WHS001" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActivityStatus_StatusId",
+                table: "ActivityStatus",
+                column: "StatusId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AddressMasters_AddressTypeId",
@@ -850,10 +987,24 @@ namespace LIBChallanAPIs.Migrations
                 column: "WarehouseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddressTypes_AddressTypeId",
-                table: "AddressTypes",
-                column: "AddressTypeId",
-                unique: true);
+                name: "IX_BatteryTrans_ActivityId",
+                table: "BatteryTrans",
+                column: "ActivityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BatteryTrans_CurrentStatusId",
+                table: "BatteryTrans",
+                column: "CurrentStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BatteryTrans_CustomerId",
+                table: "BatteryTrans",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BatteryTrans_WarehouseId",
+                table: "BatteryTrans",
+                column: "WarehouseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CityMasters_CityId",
@@ -910,6 +1061,32 @@ namespace LIBChallanAPIs.Migrations
                 column: "EntityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ServiceActivities_ActivityEngineerId",
+                table: "ServiceActivities",
+                column: "ActivityEngineerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceActivities_ActivityId",
+                table: "ServiceActivities",
+                column: "ActivityId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceActivities_EntityId",
+                table: "ServiceActivities",
+                column: "EntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceActivities_StatusId",
+                table: "ServiceActivities",
+                column: "StatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceActivities_WarehouseId",
+                table: "ServiceActivities",
+                column: "WarehouseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StateMasters_CountryId",
                 table: "StateMasters",
                 column: "CountryId");
@@ -918,6 +1095,12 @@ namespace LIBChallanAPIs.Migrations
                 name: "IX_StateMasters_StateName",
                 table: "StateMasters",
                 column: "StateName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserId",
+                table: "Users",
+                column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -955,7 +1138,7 @@ namespace LIBChallanAPIs.Migrations
                 name: "AddressMasters");
 
             migrationBuilder.DropTable(
-                name: "BatteryStatuses");
+                name: "BatteryTrans");
 
             migrationBuilder.DropTable(
                 name: "CorrectiveActions");
@@ -976,10 +1159,13 @@ namespace LIBChallanAPIs.Migrations
                 name: "PartChangeMasters");
 
             migrationBuilder.DropTable(
-                name: "AddressTypes");
+                name: "EntityTypes");
 
             migrationBuilder.DropTable(
-                name: "Warehouses");
+                name: "BatteryStatuses");
+
+            migrationBuilder.DropTable(
+                name: "ServiceActivities");
 
             migrationBuilder.DropTable(
                 name: "GSTSlabMasters");
@@ -991,16 +1177,22 @@ namespace LIBChallanAPIs.Migrations
                 name: "MasterRoles");
 
             migrationBuilder.DropTable(
+                name: "ActivityStatus");
+
+            migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Warehouses");
+
+            migrationBuilder.DropTable(
+                name: "UserTypes");
 
             migrationBuilder.DropTable(
                 name: "CityMasters");
 
             migrationBuilder.DropTable(
                 name: "EntityMasters");
-
-            migrationBuilder.DropTable(
-                name: "UserTypes");
 
             migrationBuilder.DropTable(
                 name: "StateMasters");

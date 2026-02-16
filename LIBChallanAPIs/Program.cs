@@ -33,7 +33,7 @@ builder.Services.AddScoped<IEntityMasterRepository, EntityMasterRepository>();
 builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
 builder.Services.AddScoped<IAddressMasterRepository, AddressMasterRepository>();
 builder.Services.AddScoped<IOrgLegalDetailsRepository, OrgLegalDetailsRepository>();
-//builder.Services.AddScoped<IServiceActivityRepository, ServiceActivityRepository>();
+builder.Services.AddScoped<IServiceActivityRepository, ServiceActivityRepository>();
 
 
 builder.Services.AddAuthentication(options =>

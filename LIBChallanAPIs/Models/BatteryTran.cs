@@ -10,6 +10,7 @@ namespace LIBChallanAPIs.Models
 
         [Required, MaxLength(10)]
         public string BatteryTransId { get; set; }
+
         [Required, MaxLength(10)]
         public string ActivityId { get; set; } = string.Empty; 
 

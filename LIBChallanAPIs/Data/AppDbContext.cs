@@ -38,114 +38,128 @@ public class AppDbContext : DbContext
 
     public DbSet<OrgLegalDetail> OrgLegalDetails { get; set; }
 
-    //public DbSet<ActivityStatus> ActivityStatus { get; set; }
-    //public DbSet<BatteryTran> BatteryTrans { get; set;  }
+    public DbSet<ActivityStatus> ActivityStatus { get; set; }
+    public DbSet<BatteryTran> BatteryTrans { get; set; }
 
-    //public DbSet<ServiceActivity> ServiceActivities { get; set; }
+    public DbSet<ServiceActivity> ServiceActivities { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        // ============================
+        // USER ENTITIES
+        // ============================
         modelBuilder.Entity<AppUser>()
-            .HasIndex(x => x.UserName)
-            .IsUnique();
-
-        modelBuilder.Entity<CountryMaster>()
-        .HasIndex(x => x.CountryName)
-        .IsUnique();
-
-        modelBuilder.Entity<StateMaster>()
-            .HasIndex(x => x.StateName)
-            .IsUnique();
-
-        modelBuilder.Entity<GSTTypeMaster>()
-            .HasIndex(x => x.GSTTypeCode)
-            .IsUnique();
-
-        modelBuilder.Entity<AddressMaster>()
-       .HasOne(a => a.AddressType)
-       .WithMany()
-       .HasForeignKey(a => a.AddressTypeId)
-       .HasPrincipalKey(t => t.AddressTypeId);
-
-        modelBuilder.Entity<StateMaster>()
-       .HasOne(s => s.Country)
-       .WithMany(c => c.States)
-       .HasPrincipalKey(c => c.CountryId)
-       .HasForeignKey(s => s.CountryId)
-       .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<GSTMaster>()
-       .HasOne(g => g.GSTSlab)
-       .WithMany(s => s.GSTDetails)
-       .HasPrincipalKey(s => s.GSTSlabId)
-       .HasForeignKey(g => g.GSTSlabId)
-       .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<GSTMaster>()
-            .HasOne(g => g.GSTType)
-            .WithMany(t => t.GSTMasters)
-            .HasPrincipalKey(t => t.GSTTypeId)
-            .HasForeignKey(g => g.GSTTypeId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<CityMaster>()
-        .HasOne(c => c.State)
-        .WithMany(s => s.Cities)
-        .HasPrincipalKey(s => s.StateId)
-        .HasForeignKey(c => c.StateId)
-        .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<OrgLegalDetail>()
-        .HasOne(o => o.CityMaster)
-        .WithMany(c => c.OrgLegalDetails)
-        .HasPrincipalKey(c => c.CityId)
-        .HasForeignKey(o => o.CityId);
-
-        modelBuilder.Entity<OrgLegalDetail>()
-        .HasOne(o => o.Customer)
-        .WithMany()
-        .HasPrincipalKey(e => e.EntityId)
-        .HasForeignKey(o => o.EntityId);
+            .HasIndex(x => x.UserId).IsUnique();
+        modelBuilder.Entity<AppUser>()
+            .HasIndex(x => x.UserName).IsUnique();
 
         modelBuilder.Entity<UserRole>()
             .HasKey(ur => new { ur.UserRefId, ur.RoleId });
-
         modelBuilder.Entity<UserRole>()
             .HasOne(ur => ur.User)
             .WithMany(u => u.UserRoles)
             .HasForeignKey(ur => ur.UserRefId);
-
         modelBuilder.Entity<UserRole>()
             .HasOne(ur => ur.Role)
             .WithMany(r => r.UserRoles)
             .HasForeignKey(ur => ur.RoleId);
 
+        // ============================
+        // ACTIVITY STATUS
+        // ============================
+        modelBuilder.Entity<ActivityStatus>()
+            .HasIndex(x => x.StatusId).IsUnique();
 
         // ============================
-        // UNIQUE BUSINESS KEYS
+        // SERVICE ACTIVITY
         // ============================
+        modelBuilder.Entity<ServiceActivity>()
+            .HasIndex(x => x.ActivityId).IsUnique();
 
+        modelBuilder.Entity<ServiceActivity>()
+            .HasOne(x => x.ActivityEngineer)
+            .WithMany()
+            .HasForeignKey(x => x.ActivityEngineerId)
+            .HasPrincipalKey(x => x.UserId);
+
+        modelBuilder.Entity<ServiceActivity>()
+            .HasOne(x => x.Status)
+            .WithMany()
+            .HasForeignKey(x => x.StatusId)
+            .HasPrincipalKey(x => x.StatusId);
+
+        modelBuilder.Entity<ServiceActivity>()
+            .HasOne(x => x.Entity)
+            .WithMany()
+            .HasForeignKey(x => x.EntityId)
+            .HasPrincipalKey(x => x.EntityId);
+
+        modelBuilder.Entity<ServiceActivity>()
+            .HasOne(x => x.Warehouse)
+            .WithMany()
+            .HasForeignKey(x => x.WarehouseId)
+            .HasPrincipalKey(w => w.WarehouseId);
+
+        modelBuilder.Entity<ServiceActivity>()
+            .HasMany(x => x.Batteries)
+            .WithOne(x => x.Activity)
+            .HasForeignKey(x => x.ActivityId)
+            .HasPrincipalKey(a => a.ActivityId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // ============================
+        // BATTERY TRAN
+        // ============================
+        modelBuilder.Entity<BatteryTran>()
+            .HasOne(b => b.BatteryStatus)
+            .WithMany()
+            .HasForeignKey(b => b.CurrentStatusId)
+            .HasPrincipalKey(s => s.StatusId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<BatteryTran>()
+            .HasOne(b => b.Warehouse)
+            .WithMany()
+            .HasForeignKey(b => b.WarehouseId)
+            .HasPrincipalKey(w => w.WarehouseId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<BatteryTran>()
+            .HasOne(b => b.Customer)
+            .WithMany()
+            .HasForeignKey(b => b.CustomerId)
+            .HasPrincipalKey(e => e.EntityId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // ============================
+        // ENTITY MASTER
+        // ============================
         modelBuilder.Entity<EntityMaster>()
-            .HasIndex(e => e.EntityId)
-            .IsUnique();
+            .HasIndex(e => e.EntityId).IsUnique();
 
-        modelBuilder.Entity<CityMaster>()
-            .HasIndex(c => c.CityId)
-            .IsUnique();
-
+        // ============================
+        // WAREHOUSE
+        // ============================
         modelBuilder.Entity<Warehouse>()
-            .HasIndex(w => w.WarehouseId)
-            .IsUnique();
-
-        modelBuilder.Entity<EntityType>()
-            .HasIndex(a => a.AddressTypeId)
-            .IsUnique();
+            .HasIndex(w => w.WarehouseId).IsUnique();
+        modelBuilder.Entity<Warehouse>()
+            .HasOne(w => w.EntityM)
+            .WithMany(e => e.Warehouses)
+            .HasForeignKey(w => w.EntityId)
+            .HasPrincipalKey(e => e.EntityId)
+            .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Warehouse>()
+            .HasOne(w => w.CityM)
+            .WithMany(c => c.Warehouses)
+            .HasForeignKey(w => w.CityId)
+            .HasPrincipalKey(c => c.CityId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         // ============================
-        // ADDRESSMASTER RELATIONSHIPS
+        // ADDRESS MASTER
         // ============================
-
         modelBuilder.Entity<AddressMaster>()
             .HasOne(a => a.Entity)
             .WithMany(e => e.Addresses)
@@ -175,22 +189,60 @@ public class AppDbContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         // ============================
-        // WAREHOUSE RELATIONSHIPS
+        // STATE / CITY / GST
         // ============================
+        modelBuilder.Entity<CountryMaster>()
+            .HasIndex(c => c.CountryName).IsUnique();
 
-        modelBuilder.Entity<Warehouse>()
-            .HasOne(w => w.EntityM)
-            .WithMany(e => e.Warehouses)
-            .HasForeignKey(w => w.EntityId)
-            .HasPrincipalKey(e => e.EntityId)
+        modelBuilder.Entity<StateMaster>()
+            .HasIndex(s => s.StateName).IsUnique();
+        modelBuilder.Entity<StateMaster>()
+            .HasOne(s => s.Country)
+            .WithMany(c => c.States)
+            .HasForeignKey(s => s.CountryId)
+            .HasPrincipalKey(c => c.CountryId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        modelBuilder.Entity<Warehouse>()
-            .HasOne(w => w.CityM)
-            .WithMany(c => c.Warehouses)
-            .HasForeignKey(w => w.CityId)
-            .HasPrincipalKey(c => c.CityId)
+        modelBuilder.Entity<CityMaster>()
+            .HasIndex(c => c.CityId).IsUnique();
+        modelBuilder.Entity<CityMaster>()
+            .HasOne(c => c.State)
+            .WithMany(s => s.Cities)
+            .HasForeignKey(c => c.StateId)
+            .HasPrincipalKey(s => s.StateId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<GSTTypeMaster>()
+            .HasIndex(g => g.GSTTypeCode).IsUnique();
+
+        modelBuilder.Entity<GSTMaster>()
+            .HasOne(g => g.GSTType)
+            .WithMany(t => t.GSTMasters)
+            .HasForeignKey(g => g.GSTTypeId)
+            .HasPrincipalKey(t => t.GSTTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<GSTMaster>()
+            .HasOne(g => g.GSTSlab)
+            .WithMany(s => s.GSTDetails)
+            .HasForeignKey(g => g.GSTSlabId)
+            .HasPrincipalKey(s => s.GSTSlabId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // ============================
+        // ORG LEGAL DETAILS
+        // ============================
+        modelBuilder.Entity<OrgLegalDetail>()
+            .HasOne(o => o.CityMaster)
+            .WithMany(c => c.OrgLegalDetails)
+            .HasForeignKey(o => o.CityId)
+            .HasPrincipalKey(c => c.CityId);
+
+        modelBuilder.Entity<OrgLegalDetail>()
+            .HasOne(o => o.Customer)
+            .WithMany()
+            .HasForeignKey(o => o.EntityId)
+            .HasPrincipalKey(e => e.EntityId);
 
 
         // Seed User Types

@@ -21,8 +21,6 @@ namespace LIBChallanAPIs.Models
         [Required, MaxLength(10)]
         public string WarehouseId { get; set; } = null!; 
 
-        [Required, MaxLength(10)]
-        public string ActivityAddressId { get; set; } = null!;
 
         [Required, MaxLength(10)]
         public string StatusId { get; set; } = null!;
@@ -50,6 +48,6 @@ namespace LIBChallanAPIs.Models
         [ForeignKey(nameof(StatusId))]
         public virtual ActivityStatus? Status { get; set; }
 
-        public virtual ICollection<BatteryTran>? Batteries { get; set; }
+        public virtual ICollection<BatteryTran> Batteries { get; set; } = new List<BatteryTran>();
     }
 }

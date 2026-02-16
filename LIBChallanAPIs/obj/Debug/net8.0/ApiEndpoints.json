@@ -1861,6 +1861,114 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LIBChallanAPIs.Controllers.ServiceActivityController",
+    "Method": "GetActivityById",
+    "RelativePath": "api/service-activities/{activityId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "activityId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.ServiceActivityController",
+    "Method": "UpdateSingleBattery",
+    "RelativePath": "api/service-activities/{activityId}/batteries/{batterySerial}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "activityId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "batterySerial",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "batteryDto",
+        "Type": "LIBChallanAPIs.DTOs.BatteryTranUpdateDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "activityId",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.ServiceActivityController",
+    "Method": "GetMyActivities",
+    "RelativePath": "api/service-activities/my-activities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.ServiceActivityController",
+    "Method": "GetPaged",
+    "RelativePath": "api/service-activities/paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LIBChallanAPIs.Controllers.StateMastersController",
     "Method": "Create",
     "RelativePath": "api/state-masters",
