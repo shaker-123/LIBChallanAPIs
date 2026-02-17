@@ -25,7 +25,7 @@ namespace LIBChallanAPIs.Repositories
                     AddressId = a.AddressId,
                     EntityId = a.EntityId,
                     WarehouseId = a.WarehouseId,
-                    AddressTypeId = a.AddressTypeId,
+                    AddressTypeId = a.EntityTypeId,
                     AddressLine1 = a.AddressLine1,
                     AddressLine2 = a.AddressLine2,
                     CityId = a.CityId,
@@ -46,7 +46,7 @@ namespace LIBChallanAPIs.Repositories
                     AddressId = a.AddressId,
                     EntityId = a.EntityId,
                     WarehouseId = a.WarehouseId,
-                    AddressTypeId = a.AddressTypeId,
+                    AddressTypeId = a.EntityTypeId,
                     AddressLine1 = a.AddressLine1,
                     AddressLine2 = a.AddressLine2,
                     CityId = a.CityId,
@@ -93,7 +93,7 @@ namespace LIBChallanAPIs.Repositories
                     AddressId = a.AddressId,
                     EntityId = a.EntityId,
                     WarehouseId = a.WarehouseId,
-                    AddressTypeId = a.AddressTypeId,
+                    AddressTypeId = a.EntityTypeId,
                     AddressLine1 = a.AddressLine1,
                     AddressLine2 = a.AddressLine2,
                     CityId = a.CityId,
@@ -134,7 +134,7 @@ namespace LIBChallanAPIs.Repositories
                 AddressId = $"ADR{nextNumber:D3}", 
                 EntityId = dto.EntityId,
                 WarehouseId = dto.WarehouseId,
-                AddressTypeId = dto.AddressTypeId,
+                EntityTypeId = dto.AddressTypeId,
                 AddressLine1 = dto.AddressLine1,
                 AddressLine2 = dto.AddressLine2,
                 CityId = dto.CityId,
@@ -152,7 +152,7 @@ namespace LIBChallanAPIs.Repositories
                 .FirstOrDefaultAsync();
 
             var addressTypeName = await _context.EntityTypes
-                .Where(t => t.AddressTypeId == dto.AddressTypeId)
+                .Where(t => t.EntityTypeId == dto.AddressTypeId)
                 .Select(t => t.TypeName)
                 .FirstOrDefaultAsync();
 
@@ -162,7 +162,7 @@ namespace LIBChallanAPIs.Repositories
                 AddressId = entity.AddressId, 
                 EntityId = entity.EntityId,
                 WarehouseId = entity.WarehouseId,
-                AddressTypeId = entity.AddressTypeId,
+                AddressTypeId = entity.EntityTypeId,
                 AddressLine1 = entity.AddressLine1,
                 AddressLine2 = entity.AddressLine2,
                 CityId = entity.CityId,
@@ -180,7 +180,7 @@ namespace LIBChallanAPIs.Repositories
 
             entity.EntityId = dto.EntityId ?? entity.EntityId;
             entity.WarehouseId = dto.WarehouseId ?? entity.WarehouseId;
-            entity.AddressTypeId = dto.AddressTypeId ?? entity.AddressTypeId;
+            entity.EntityTypeId = dto.AddressTypeId ?? entity.EntityTypeId;
             entity.AddressLine1 = dto.AddressLine1 ?? entity.AddressLine1;
             entity.AddressLine2 = dto.AddressLine2 ?? entity.AddressLine2;
             entity.CityId = dto.CityId ?? entity.CityId;
@@ -196,7 +196,7 @@ namespace LIBChallanAPIs.Repositories
                 .FirstOrDefaultAsync();
 
             var addressTypeName = await _context.EntityTypes
-                .Where(t => t.AddressTypeId == entity.AddressTypeId)
+                .Where(t => t.EntityTypeId == entity.EntityTypeId)
                 .Select(t => t.TypeName)
                 .FirstOrDefaultAsync();
 
@@ -205,7 +205,7 @@ namespace LIBChallanAPIs.Repositories
                 Id = entity.Id,
                 EntityId = entity.EntityId,
                 WarehouseId = entity.WarehouseId,
-                AddressTypeId = entity.AddressTypeId,
+                AddressTypeId = entity.EntityTypeId,
                 AddressLine1 = entity.AddressLine1,
                 AddressLine2 = entity.AddressLine2,
                 CityId = entity.CityId,

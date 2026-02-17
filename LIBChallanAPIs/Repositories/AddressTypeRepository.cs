@@ -22,7 +22,7 @@ namespace LIBChallanAPIs.Repositories
                 .Select(x => new AddressTypeDto
                 {
                     Id = x.Id,
-                    AddressTypeId = x.AddressTypeId,
+                    AddressTypeId = x.EntityTypeId,
                     TypeCode = x.TypeCode,
                     TypeName = x.TypeName,
                     IsActive = x.IsActive
@@ -37,7 +37,7 @@ namespace LIBChallanAPIs.Repositories
                 .Select(x => new AddressTypeDto
                 {
                     Id = x.Id,
-                    AddressTypeId = x.AddressTypeId,
+                    AddressTypeId = x.EntityTypeId,
                     TypeCode = x.TypeCode,
                     TypeName = x.TypeName,
                     IsActive = x.IsActive
@@ -52,7 +52,7 @@ namespace LIBChallanAPIs.Repositories
                 .Select(x => new AddressTypeDto
                 {
                     Id = x.Id,
-                    AddressTypeId = x.AddressTypeId,
+                    AddressTypeId = x.EntityTypeId,
                     TypeCode = x.TypeCode,
                     TypeName = x.TypeName,
                     IsActive = x.IsActive
@@ -96,7 +96,7 @@ namespace LIBChallanAPIs.Repositories
                 .Select(x => new AddressTypeDto
                 {
                     Id = x.Id,
-                    AddressTypeId = x.AddressTypeId,
+                    AddressTypeId = x.EntityTypeId,
                     TypeCode = x.TypeCode,
                     TypeName = x.TypeName,
                     IsActive = x.IsActive
@@ -116,16 +116,16 @@ namespace LIBChallanAPIs.Repositories
         public async Task<AddressTypeDto> CreateAsync(AddressTypeCreateDto dto)
         {
             var lastNumber = await _context.EntityTypes
-                .OrderByDescending(x => x.AddressTypeId)
-                .Select(x => x.AddressTypeId)
+                .OrderByDescending(x => x.EntityTypeId)
+                .Select(x => x.EntityTypeId)
                 .FirstOrDefaultAsync();
 
             var nextNumber = lastNumber + 1;
 
             var entity = new EntityType
             {
-                AddressTypeId = nextNumber,
-                TypeCode = $"ADRT{nextNumber:D3}",
+                EntityTypeId = nextNumber,
+                TypeCode = $"ETY{nextNumber:D3}",
                 TypeName = dto.TypeName,
                 IsActive = dto.IsActive,
                 CreatedAt = DateTime.UtcNow
@@ -137,7 +137,7 @@ namespace LIBChallanAPIs.Repositories
             return new AddressTypeDto
             {
                 Id = entity.Id,
-                AddressTypeId = entity.AddressTypeId,
+                AddressTypeId = entity.EntityTypeId,
                 TypeCode = entity.TypeCode,
                 TypeName = entity.TypeName,
                 IsActive = entity.IsActive
@@ -158,7 +158,7 @@ namespace LIBChallanAPIs.Repositories
             return new AddressTypeDto
             {
                 Id = entity.Id,
-                AddressTypeId = entity.AddressTypeId,
+                AddressTypeId = entity.EntityTypeId,
                 TypeCode = entity.TypeCode,
                 TypeName = entity.TypeName,
                 IsActive = entity.IsActive
@@ -183,7 +183,7 @@ namespace LIBChallanAPIs.Repositories
         public async Task<bool> ToggleActiveAsync(ToggleActiveDto dto)
         {
             var entity = await _context.EntityTypes
-        .FirstOrDefaultAsync(x => x.AddressTypeId == dto.Id);
+        .FirstOrDefaultAsync(x => x.EntityTypeId == dto.Id);
 
             if (entity == null)
                 return false;

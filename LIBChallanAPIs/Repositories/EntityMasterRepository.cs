@@ -23,6 +23,7 @@ namespace LIBChallanAPIs.Repositories
                 {
                     Id = x.Id,
                     EntityName = x.EntityName,
+                    EntityTypeId = x.EntityTypeId,
                     EntityId = x.EntityId,
                     ContactPerson = x.ContactPerson,
                     Email = x.Email,
@@ -68,6 +69,7 @@ namespace LIBChallanAPIs.Repositories
                 {
                     Id = x.Id,
                     EntityId = x.EntityId,
+                    EntityTypeId = x.EntityTypeId,
                     EntityName = x.EntityName,
                     ContactPerson = x.ContactPerson,
                     Email = x.Email,
@@ -95,6 +97,7 @@ namespace LIBChallanAPIs.Repositories
                     Id = x.Id,
                     EntityId = x.EntityId,
                     EntityName = x.EntityName,
+                    EntityTypeId = x.EntityTypeId,
                     ContactPerson = x.ContactPerson,
                     Email = x.Email,
                     Mobile = x.Mobile,
@@ -125,6 +128,7 @@ namespace LIBChallanAPIs.Repositories
             {
                 EntityId = $"ETM{nextNumber:D3}",
                 EntityName = dto.EntityName,
+                EntityTypeId = dto.EntityTypeId,
                 ContactPerson = dto.ContactPerson,
                 Email = dto.Email,
                 Mobile = dto.Mobile,
@@ -147,6 +151,7 @@ namespace LIBChallanAPIs.Repositories
 
             entity.EntityName = dto.EntityName ?? entity.EntityName;
             entity.ContactPerson = dto.ContactPerson ?? entity.ContactPerson;
+            entity.EntityTypeId = dto.EntityTypeId ?? entity.EntityTypeId;
             entity.Email = dto.Email ?? entity.Email;
             entity.Mobile = dto.Mobile ?? entity.Mobile;
             entity.IsActive = dto.IsActive ?? entity.IsActive;

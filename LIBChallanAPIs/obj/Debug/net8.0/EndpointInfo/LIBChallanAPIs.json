@@ -2035,6 +2035,131 @@
         }
       }
     },
+    "/api/FirmwareStatus": {
+      "get": {
+        "tags": [
+          "FirmwareStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FirmwareStatus"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FirmwareStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FirmwareStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FirmwareStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/FirmwareStatus/{id}": {
+      "get": {
+        "tags": [
+          "FirmwareStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "FirmwareStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FirmwareStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FirmwareStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FirmwareStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FirmwareStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/gst-masters/{id}": {
       "get": {
         "tags": [
@@ -3106,6 +3231,18 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/service-activities/GetToeken": {
+      "get": {
+        "tags": [
+          "ServiceActivity"
         ],
         "responses": {
           "200": {
@@ -4202,11 +4339,17 @@
       },
       "EntityMasterCreateDto": {
         "required": [
-          "entityName"
+          "entityName",
+          "entityTypeId"
         ],
         "type": "object",
         "properties": {
           "entityName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "entityTypeId": {
+            "maxLength": 10,
             "minLength": 1,
             "type": "string"
           },
@@ -4235,6 +4378,10 @@
             "type": "string",
             "nullable": true
           },
+          "entityTypeId": {
+            "type": "string",
+            "nullable": true
+          },
           "contactPerson": {
             "type": "string",
             "nullable": true
@@ -4250,6 +4397,55 @@
           "isActive": {
             "type": "boolean",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FirmwareStatus": {
+        "required": [
+          "firmwareStatusId",
+          "firmwareStatusName"
+        ],
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firmwareStatusId": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          },
+          "firmwareStatusName": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "batteryType": {
+            "maxLength": 20,
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

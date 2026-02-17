@@ -34,6 +34,7 @@ builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
 builder.Services.AddScoped<IAddressMasterRepository, AddressMasterRepository>();
 builder.Services.AddScoped<IOrgLegalDetailsRepository, OrgLegalDetailsRepository>();
 builder.Services.AddScoped<IServiceActivityRepository, ServiceActivityRepository>();
+builder.Services.AddScoped<IFirmwareStatusRepository, FirmwareStatusRepository>();
 
 
 builder.Services.AddAuthentication(options =>

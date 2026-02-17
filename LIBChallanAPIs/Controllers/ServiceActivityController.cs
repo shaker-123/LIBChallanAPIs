@@ -4,6 +4,9 @@ using LIBChallanAPIs.IRepositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
+using System.Text;
 
 namespace LIBChallanAPIs.Controllers
 {
@@ -81,6 +84,27 @@ namespace LIBChallanAPIs.Controllers
             var pagedResult = await _repository.GetPagedActivitiesAsync(request);
 
             return Ok(pagedResult);
+        }
+
+
+        [HttpGet("GetToeken")]
+        public async Task<IActionResult> GetAllToeken()
+        {
+            using var client = new HttpClient();
+
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://lib-trace.i-diligence.com/api/account/login");
+
+
+            var json = "{\"userName\": \"LIB-VIEW-DETAILS\", \"password\": \"Lib@1234\"}";
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.SendAsync(request);
+
+            response.EnsureSuccessStatusCode();
+
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            return Ok(responseContent);
         }
 
     }

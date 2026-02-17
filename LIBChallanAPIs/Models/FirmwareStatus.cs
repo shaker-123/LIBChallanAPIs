@@ -3,21 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LIBChallanAPIs.Models
 {
-    public class EntityType : BaseEntity
+    public class FirmwareStatus : BaseEntity
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(10)]
-        public string? EntityTypeId { get; set; }  
+        public string FirmwareStatusId { get; set; } = null!;
 
-        public string TypeCode { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(50)]
+        public string FirmwareStatusName { get; set; } = null!;
 
-        public string TypeName { get; set; } = string.Empty;
+        [MaxLength(20)]
+        public string BatteryType { get; set; } = "45Ah";
 
         public bool IsActive { get; set; } = true;
-
-        public virtual ICollection<EntityMaster>? EntityMasters { get; set; }
     }
 }

@@ -15,7 +15,7 @@ public class AddressMaster : BaseEntity
 
     [Required]
     [MaxLength(10)]
-    public string AddressTypeId { get; set; } = string.Empty;
+    public string EntityTypeId { get; set; } = string.Empty;
 
     [MaxLength(500)]
     public string AddressLine1 { get; set; } = string.Empty;

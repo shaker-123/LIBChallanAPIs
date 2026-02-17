@@ -1286,6 +1286,85 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LIBChallanAPIs.Controllers.FirmwareStatusController",
+    "Method": "GetAll",
+    "RelativePath": "api/FirmwareStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.FirmwareStatusController",
+    "Method": "Create",
+    "RelativePath": "api/FirmwareStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "LIBChallanAPIs.Models.FirmwareStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.FirmwareStatusController",
+    "Method": "Get",
+    "RelativePath": "api/FirmwareStatus/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.FirmwareStatusController",
+    "Method": "Update",
+    "RelativePath": "api/FirmwareStatus/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "LIBChallanAPIs.Models.FirmwareStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.FirmwareStatusController",
+    "Method": "Delete",
+    "RelativePath": "api/FirmwareStatus/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LIBChallanAPIs.Controllers.GSTMastersController",
     "Method": "Create",
     "RelativePath": "api/gst-masters",
@@ -1905,6 +1984,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LIBChallanAPIs.Controllers.ServiceActivityController",
+    "Method": "GetAllToeken",
+    "RelativePath": "api/service-activities/GetToeken",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

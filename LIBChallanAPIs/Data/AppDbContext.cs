@@ -43,6 +43,8 @@ public class AppDbContext : DbContext
 
     public DbSet<ServiceActivity> ServiceActivities { get; set; }
 
+    public DbSet<FirmwareStatus> FirmwareStatuses { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -137,7 +139,20 @@ public class AppDbContext : DbContext
         // ENTITY MASTER
         // ============================
         modelBuilder.Entity<EntityMaster>()
-            .HasIndex(e => e.EntityId).IsUnique();
+            .HasIndex(e => e.EntityId)
+            .IsUnique();
+
+        modelBuilder.Entity<EntityType>()
+            .HasIndex(t => t.EntityTypeId)
+            .IsUnique();
+
+        modelBuilder.Entity<EntityMaster>()
+            .HasOne(e => e.Entity)
+            .WithMany(t => t.EntityMasters)
+            .HasForeignKey(e => e.EntityTypeId)
+            .HasPrincipalKey(t => t.EntityTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
+
 
         // ============================
         // WAREHOUSE
@@ -184,8 +199,8 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<AddressMaster>()
             .HasOne(a => a.AddressType)
             .WithMany()
-            .HasForeignKey(a => a.AddressTypeId)
-            .HasPrincipalKey(t => t.AddressTypeId)
+            .HasForeignKey(a => a.EntityTypeId)
+            .HasPrincipalKey(t => t.EntityTypeId)
             .OnDelete(DeleteBehavior.Restrict);
 
         // ============================
@@ -292,13 +307,75 @@ public class AppDbContext : DbContext
                     IsActive = true,
                     CreatedAt = DateTime.UtcNow,
                     CreatedBy = "System"
-                }
-          );
+                },
+                
+                    new AppUser { Id = 3, UserId = "URR003", UserName = "AkashPrajapati", FullName = "Mr. Akash Prajapati", Phone = "9000000003", Email = "akashprajapati@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 4, UserId = "URR004", UserName = "AkashYadav", FullName = "Mr. Akash Yadav", Phone = "9000000004", Email = "akashyadav@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 5, UserId = "URR005", UserName = "AkhilShukla", FullName = "Mr. Akhil Shukla", Phone = "9000000005", Email = "akhilshukla@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 6, UserId = "URR006", UserName = "ArifIqwal", FullName = "Mr. Arif Iqwal", Phone = "9000000006", Email = "arifiqwal@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 7, UserId = "URR007", UserName = "Babu", FullName = "Mr. Babu", Phone = "9000000007", Email = "babu@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 8, UserId = "URR008", UserName = "DeepakRajput", FullName = "Mr. Deepak Rajput", Phone = "9000000008", Email = "deepakrajput@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 9, UserId = "URR009", UserName = "DevendraKumar1", FullName = "Mr. Devendra Kumar", Phone = "9000000009", Email = "devendrakumar1@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 10, UserId = "URR010", UserName = "GauravKumar", FullName = "Mr. Gaurav Kumar", Phone = "9000000010", Email = "gauravkumar@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 11, UserId = "URR011", UserName = "KetanGupta", FullName = "Mr. Ketan Gupta", Phone = "9000000011", Email = "ketangupta@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 12, UserId = "URR012", UserName = "ManishKumar", FullName = "Mr. Manish Kumar", Phone = "9000000012", Email = "manishkumar@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 13, UserId = "URR013", UserName = "PradeepKumar", FullName = "Mr. Pradeep Kumar", Phone = "9000000013", Email = "pradeepkumar@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 14, UserId = "URR014", UserName = "RajNimore", FullName = "Mr. Raj Nimore", Phone = "9000000014", Email = "rajnimore@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 15, UserId = "URR015", UserName = "RamPandey", FullName = "Mr. Ram Pandey", Phone = "9000000015", Email = "rampandey@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 16, UserId = "URR016", UserName = "SalaudinAnsari", FullName = "Mr. Salaudin Ansari", Phone = "9000000016", Email = "salaudinansari@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 17, UserId = "URR017", UserName = "SameerSabane", FullName = "Mr. Sameer Sabane", Phone = "9000000017", Email = "sameersabane@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 18, UserId = "URR018", UserName = "ShivendraSingh", FullName = "Mr. Shivendra Singh", Phone = "9000000018", Email = "shivendrasingh@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 19, UserId = "URR019", UserName = "VivekShukla", FullName = "Mr. Vivek Shukla", Phone = "9000000019", Email = "vivekshukla@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 20, UserId = "URR020", UserName = "AbhishekKumar", FullName = "Mr. Abhishek Kumar", Phone = "9000000020", Email = "abhishekkumar@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 21, UserId = "URR021", UserName = "DevendraKumar2", FullName = "Mr. Devendra Kumar", Phone = "9000000021", Email = "devendrakumar2@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 22, UserId = "URR022", UserName = "NikhilShukla", FullName = "Mr. Nikhil Shukla", Phone = "9000000022", Email = "nikhishukla@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 23, UserId = "URR023", UserName = "RajThakur", FullName = "Mr. Raj Thakur", Phone = "9000000023", Email = "rajthakur@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 24, UserId = "URR024", UserName = "ShivendraSingh2", FullName = "Mr. Shivendra Singh", Phone = "9000000024", Email = "shivendrasingh2@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 25, UserId = "URR025", UserName = "ShobhitSingh", FullName = "Mr. Shobhit Singh", Phone = "9000000025", Email = "shobhitsingh@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 26, UserId = "URR026", UserName = "TausifAnsari", FullName = "Mr. Tausif Ansari", Phone = "9000000026", Email = "tausifansari@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 27, UserId = "URR027", UserName = "MukulYadav", FullName = "Mr. Mukul Yadav", Phone = "9000000027", Email = "mukulyadav@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 28, UserId = "URR028", UserName = "Vicky", FullName = "Mr. Vicky", Phone = "9000000028", Email = "vicky@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 29, UserId = "URR029", UserName = "ThakurSahab", FullName = "Mr. Thakur Sahab", Phone = "9000000029", Email = "thakursahab@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 30, UserId = "URR030", UserName = "YatishRaj", FullName = "Mr. Yatish Raj", Phone = "9000000030", Email = "yatishraj@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 31, UserId = "URR031", UserName = "ShravanKumarPrajapati", FullName = "Mr. Shravan Kumar Prajapati", Phone = "9000000031", Email = "shravankumarprajapati@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 32, UserId = "URR032", UserName = "AmanJaiswal", FullName = "Mr. Aman Jaiswal", Phone = "9000000032", Email = "amanjaiswal@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" },
+                    new AppUser { Id = 33, UserId = "URR033", UserName = "Shailendra", FullName = "Mr. Shailendra", Phone = "9000000033", Email = "shailendra@system.com", PasswordHash = new byte[] { 165, 190, 135, 161, 62, 60, 231, 123, 67, 242, 42, 240, 30, 163, 16, 142, 138, 94, 110, 84, 99, 196, 240, 192, 23, 61, 88, 191, 16, 101, 27, 36 }, IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System" }          );
 
 
         modelBuilder.Entity<UserRole>().HasData(
                   new UserRole { UserRefId = 1, RoleId = "RLM001", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
-                  new UserRole { UserRefId = 2, RoleId = "RLM002", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
+                  new UserRole { UserRefId = 2, RoleId = "RLM002", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 3, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 4, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 5, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 6, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 7, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 8, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 9, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 10, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 11, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 12, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 13, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 14, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 15, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 16, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 17, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 18, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 19, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 20, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 21, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 22, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 23, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 24, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 25, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 26, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 27, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 28, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 29, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 30, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 31, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 32, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+                  new UserRole { UserRefId = 33, RoleId = "RLM003", CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
 
 
         modelBuilder.Entity<CountryMaster>().HasData(
@@ -500,18 +577,18 @@ public class AppDbContext : DbContext
 
 
         modelBuilder.Entity<EntityType>().HasData(
-            new EntityType { Id = 1, AddressTypeId = "ADRT01", TypeCode = "CUSTOMER_WH", TypeName = "Customer Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
-            new EntityType { Id = 2, AddressTypeId = "ADRT02", TypeCode = "DELHI_WH", TypeName = "DELHI Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
-            new EntityType { Id = 3, AddressTypeId = "ADRT03", TypeCode = "PLANT_WH", TypeName = "Plant Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
-            new EntityType { Id = 4, AddressTypeId = "ADRT04", TypeCode = "CUSTOMER_MN", TypeName = "Customer Main", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" });
+            new EntityType { Id = 1, EntityTypeId = "ETY001", TypeCode = "CUSTOMER_WH", TypeName = "Customer Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
+            new EntityType { Id = 2, EntityTypeId = "ETY002", TypeCode = "DELHI_WH", TypeName = "DELHI Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
+            new EntityType { Id = 3, EntityTypeId = "ETY003", TypeCode = "PLANT_WH", TypeName = "Plant Warehouse", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" },
+            new EntityType { Id = 4, EntityTypeId = "ETY004", TypeCode = "CUSTOMER_MN", TypeName = "Customer Main", IsActive = true, CreatedAt = new DateTime(2024, 1, 1), CreatedBy = "URR002" });
 
 
         modelBuilder.Entity<EntityMaster>().HasData(
-            new EntityMaster { Id = 1, EntityId = "ETM001", EntityName = "Battery Smart Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" },
-            new EntityMaster { Id = 2, EntityId = "ETM002", EntityName = "Upgrid Solutions Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" },
-            new EntityMaster { Id = 3, EntityId = "ETM003", EntityName = "Mumbai Batteries Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" }, 
-            new EntityMaster { Id = 4, EntityId = "ETM004", EntityName = "Global Eneergy Service Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" },
-            new EntityMaster { Id = 5, EntityId = "ETM005", EntityName = "Bangalore Eneergy Solutions Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" });
+            new EntityMaster { Id = 1, EntityId = "ETM001",EntityTypeId  = "ETY001", EntityName = "Battery Smart Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" },
+            new EntityMaster { Id = 2, EntityId = "ETM002",EntityTypeId  = "ETY002", EntityName = "Upgrid Solutions Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" },
+            new EntityMaster { Id = 3, EntityId = "ETM003",EntityTypeId  = "ETY003", EntityName = "Mumbai Batteries Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" }, 
+            new EntityMaster { Id = 4, EntityId = "ETM004",EntityTypeId  = "ETY004", EntityName = "Global Eneergy Service Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" },
+            new EntityMaster { Id = 5, EntityId = "ETM005", EntityTypeId = "ETY003", EntityName = "Bangalore Eneergy Solutions Pvt Ltd", IsActive = true, CreatedAt = new DateTime(2026, 1, 1), CreatedBy = "URR002" });
 
         modelBuilder.Entity<Warehouse>().HasData(
     new Warehouse { Id = 1, WarehouseId = "WHS001", WarehouseCode = "NewDelhi-WH001", CityId = "CTM001", EntityId = "ETM001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
@@ -519,11 +596,11 @@ public class AppDbContext : DbContext
     new Warehouse { Id = 3, WarehouseId = "WHS003", WarehouseCode = "Mumbai-WH003", CityId = "CTM003", EntityId = "ETM003", IsActive = false, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
 
         modelBuilder.Entity<AddressMaster>().HasData(
-      new AddressMaster { Id = 1, AddressId = "ADR001", EntityId = "ETM001", WarehouseId = "WHS001", AddressTypeId = "ADRT02", AddressLine1 = "123, Connaught Place", AddressLine2 = "Near India Gate", CityId = "CTM001", PostalCode = "110001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
-      new AddressMaster { Id = 2, AddressId = "ADR002", EntityId = "ETM002", WarehouseId = "WHS002", AddressTypeId = "ADRT02", AddressLine1 = "45, Rohini Sector 12", AddressLine2 = null, CityId = "CTM002", PostalCode = "110007", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
-      new AddressMaster { Id = 3, AddressId = "ADR003", EntityId = "ETM003", WarehouseId = "WHS003", AddressTypeId = "ADRT03", AddressLine1 = "789, Andheri East", AddressLine2 = "Near Chhatrapati Complex", CityId = "CTM004", PostalCode = "400001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
-      new AddressMaster { Id = 4, AddressId = "ADR004", EntityId = "ETM004", WarehouseId = "WHS001", AddressTypeId = "ADRT02", AddressLine1 = "56, Laxmi Nagar", AddressLine2 = null, CityId = "CTM003", PostalCode = "110016", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
-      new AddressMaster { Id = 5, AddressId = "ADR005", EntityId = "ETM005", WarehouseId = null, AddressTypeId = "ADRT01", AddressLine1 = "22, MG Road", AddressLine2 = null, CityId = "CTM007", PostalCode = "560001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
+      new AddressMaster { Id = 1, AddressId = "ADR001", EntityId = "ETM001", WarehouseId = "WHS001", EntityTypeId = "ETY002", AddressLine1 = "123, Connaught Place", AddressLine2 = "Near India Gate", CityId = "CTM001", PostalCode = "110001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+      new AddressMaster { Id = 2, AddressId = "ADR002", EntityId = "ETM002", WarehouseId = "WHS002", EntityTypeId = "ETY002", AddressLine1 = "45, Rohini Sector 12", AddressLine2 = null, CityId = "CTM002", PostalCode = "110007", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+      new AddressMaster { Id = 3, AddressId = "ADR003", EntityId = "ETM003", WarehouseId = "WHS003", EntityTypeId = "ETY003", AddressLine1 = "789, Andheri East", AddressLine2 = "Near Chhatrapati Complex", CityId = "CTM004", PostalCode = "400001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+      new AddressMaster { Id = 4, AddressId = "ADR004", EntityId = "ETM004", WarehouseId = "WHS001", EntityTypeId = "ETY002", AddressLine1 = "56, Laxmi Nagar", AddressLine2 = null, CityId = "CTM003", PostalCode = "110016", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
+      new AddressMaster { Id = 5, AddressId = "ADR005", EntityId = "ETM005", WarehouseId = null, EntityTypeId = "ETY001", AddressLine1 = "22, MG Road", AddressLine2 = null, CityId = "CTM007", PostalCode = "560001", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
 
         modelBuilder.Entity<OrgLegalDetail>().HasData(
             new OrgLegalDetail { Id = 1, LegalId = "OLD001", EntityId = "ETM001", GSTINNumber = "27ABCDE1234F1Z5", CINNumber = "L12345MH2020PTC123456", PANNumber = "ABCDE1234F", CityId = "CTM004", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
@@ -535,6 +612,43 @@ public class AppDbContext : DbContext
                 new ActivityStatus { Id = 1, StatusId = "ACT001", StatusName = "Open", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
                 new ActivityStatus { Id = 2, StatusId = "ACT002", StatusName = "InProgress", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" },
                 new ActivityStatus { Id = 3, StatusId = "ACT003", StatusName = "Closed", IsActive = true, CreatedAt = DateTime.UtcNow, CreatedBy = "URR002" });
+
+        modelBuilder.Entity<FirmwareStatus>().HasData(
+
+    new FirmwareStatus
+    {
+        Id = 1,
+        FirmwareStatusId = "FWS001",
+        FirmwareStatusName = "Updated",
+        BatteryType = "45Ah",
+        IsActive = true,
+        CreatedAt = new DateTime(2026, 1, 1),
+        CreatedBy = "System"
+    },
+
+    new FirmwareStatus
+    {
+        Id = 2,
+        FirmwareStatusId = "FWS002",
+        FirmwareStatusName = "Not Updated",
+        BatteryType = "45Ah",
+        IsActive = true,
+        CreatedAt = new DateTime(2026, 1, 1),
+        CreatedBy = "System"
+    },
+
+    new FirmwareStatus
+    {
+        Id = 3,
+        FirmwareStatusId = "FWS003",
+        FirmwareStatusName = "Already Updated",
+        BatteryType = "45Ah",
+        IsActive = true,
+        CreatedAt = new DateTime(2026, 1, 1),
+        CreatedBy = "System"
+    }
+
+);
 
 
         base.OnModelCreating(modelBuilder);
