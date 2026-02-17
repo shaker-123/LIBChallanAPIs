@@ -14,12 +14,14 @@ namespace LIBChallanAPIs.Repositories
         {
             _context = context;
         }
+
         public async Task<string> CreateAsync(ServiceActivityCreateDto dto, string loggedInUserId)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
+
                 var lastActivityId = await _context.ServiceActivities
                     .Where(x => x.ActivityId.StartsWith("SAI"))
                     .OrderByDescending(x => x.ActivityId)
@@ -55,6 +57,7 @@ namespace LIBChallanAPIs.Repositories
                 _context.ServiceActivities.Add(activity);
                 await _context.SaveChangesAsync();
 
+
                 var lastBatteryId = await _context.BatteryTrans
                     .Where(x => x.BatteryTransId.StartsWith("TBI"))
                     .OrderByDescending(x => x.BatteryTransId)
@@ -78,13 +81,23 @@ namespace LIBChallanAPIs.Repositories
                     {
                         BatteryTransId = newBatteryId,
                         ActivityId = newActivityId,
+
                         BatterySerial = batteryDto.BatterySerial,
                         BatteryIdInLIBSystem = batteryDto.BatteryIdInLIBSystem,
                         Barcode = batteryDto.Barcode,
+
                         CurrentStatusId = batteryDto.CurrentStatusId,
+                        FirmwareStatusId = batteryDto.FirmwareStatusId,
+
+                        CorrectiveActionId = batteryDto.CorrectiveActionId,
+                        DefectTypeId = batteryDto.DefectTypeId,
+                        PartId = batteryDto.PartId,
+
                         CustomerId = dto.EntityId,
                         WarehouseId = dto.WarehouseId,
+
                         IsActive = true,
+                        CreatedBy = loggedInUserId,
                         CreatedAt = DateTime.UtcNow
                     };
 
@@ -105,24 +118,37 @@ namespace LIBChallanAPIs.Repositories
             }
         }
 
-        public async Task UpdateSingleBatteryAsync(string activityId, string batterySerial, BatteryTranUpdateDto batteryDto)
+
+        public async Task UpdateSingleBatteryAsync(
+      string batteryTransId,
+      BatteryTranUpdateDto batteryDto)
         {
             var battery = await _context.BatteryTrans
-                .FirstOrDefaultAsync(b => b.ActivityId == activityId && b.BatterySerial == batterySerial);
+                .FirstOrDefaultAsync(b => b.BatteryTransId == batteryTransId);
 
             if (battery == null)
-                throw new KeyNotFoundException($"Battery with serial '{batterySerial}' for Activity '{activityId}' not found.");
+                throw new KeyNotFoundException(
+                    $"Battery with Transaction Id '{batteryTransId}' not found.");
 
             battery.BatteryIdInLIBSystem = batteryDto.BatteryIdInLIBSystem;
             battery.Barcode = batteryDto.Barcode;
+
             battery.CurrentStatusId = batteryDto.CurrentStatusId;
+            battery.FirmwareStatusId = batteryDto.FirmwareStatusId;
+
+            battery.CorrectiveActionId = batteryDto.CorrectiveActionId;
+            battery.DefectTypeId = batteryDto.DefectTypeId;
+            battery.PartId = batteryDto.PartId;
+
             battery.WarehouseId = batteryDto.WarehouseId;
             battery.CustomerId = batteryDto.CustomerId;
+
             battery.IsActive = batteryDto.IsActive;
             battery.UpdatedAt = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
         }
+
 
         public async Task<PagedResponse<ServiceActivityDto>> GetPagedActivitiesAsync(PagedRequest request)
         {
@@ -130,9 +156,17 @@ namespace LIBChallanAPIs.Repositories
                 .Include(a => a.Batteries)
                     .ThenInclude(b => b.BatteryStatus)
                 .Include(a => a.Batteries)
+                    .ThenInclude(b => b.FirmwareStatus)
+                .Include(a => a.Batteries)
                     .ThenInclude(b => b.Customer)
                 .Include(a => a.Batteries)
                     .ThenInclude(b => b.Warehouse)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.CorrectiveAction)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.DefectDetail)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.PartChangeMaster)
                 .Include(a => a.Warehouse)
                 .Include(a => a.Entity)
                 .Include(a => a.Status)
@@ -166,10 +200,15 @@ namespace LIBChallanAPIs.Repositories
             if (!string.IsNullOrEmpty(request.SortColumn))
             {
                 if (request.SortColumn.Equals("ActivityDate", StringComparison.OrdinalIgnoreCase))
-                    query = request.SortDirection.ToUpper() == "DESC" ? query.OrderByDescending(a => a.ActivityDate)
-                                                                       : query.OrderBy(a => a.ActivityDate);
+                {
+                    query = request.SortDirection.ToUpper() == "DESC"
+                        ? query.OrderByDescending(a => a.ActivityDate)
+                        : query.OrderBy(a => a.ActivityDate);
+                }
                 else
-                    query = query.OrderBy(a => a.ActivityId); 
+                {
+                    query = query.OrderBy(a => a.ActivityId);
+                }
             }
             else
             {
@@ -196,20 +235,39 @@ namespace LIBChallanAPIs.Repositories
                 NumberOfBatteriesOnSite = a.NumberOfBatteriesOnSite,
                 NumberOfBatteriesOnSiteRTF = a.NumberOfBatteriesOnSiteRTF,
                 IsActive = a.IsActive,
+
                 Batteries = a.Batteries.Select(b => new BatteryTranDto
                 {
                     BatteryTransId = b.BatteryTransId,
                     BatterySerial = b.BatterySerial,
                     BatteryIdInLIBSystem = b.BatteryIdInLIBSystem,
                     Barcode = b.Barcode,
+
                     CurrentStatusId = b.CurrentStatusId,
                     CurrentStatusName = b.BatteryStatus?.StatusName,
+
+                    FirmwareStatusId = b.FirmwareStatusId,
+                    FirmwareStatusName = b.FirmwareStatus?.FirmwareStatusName,
+
                     CustomerId = b.CustomerId,
                     CustomerName = b.Customer?.EntityName,
+
                     WarehouseId = b.WarehouseId,
                     WarehouseName = b.Warehouse?.WarehouseCode,
+
+                    CorrectiveActionId = b.CorrectiveActionId,
+                    CorrectiveActionName = b.CorrectiveAction?.ActionName,
+
+                    DefectTypeId = b.DefectTypeId,
+                    DefectName = b.DefectDetail?.DefectName,
+
+                    PartId = b.PartId,
+                    PartName = b.PartChangeMaster?.PartName,
+
                     IsActive = b.IsActive
+
                 }).ToList()
+
             }).ToList();
 
             return new PagedResponse<ServiceActivityDto>
@@ -221,20 +279,27 @@ namespace LIBChallanAPIs.Repositories
             };
         }
 
-
         public async Task<ServiceActivityDto?> GetActivityByIdAsync(string activityId)
         {
             var activity = await _context.ServiceActivities
                 .Include(a => a.Batteries)
-                    .ThenInclude(b => b.BatteryStatus) 
+                    .ThenInclude(b => b.BatteryStatus)
                 .Include(a => a.Batteries)
-                    .ThenInclude(b => b.Customer)     
+                    .ThenInclude(b => b.FirmwareStatus)
                 .Include(a => a.Batteries)
-                    .ThenInclude(b => b.Warehouse)    
-                .Include(a => a.Warehouse)            
-                .Include(a => a.Entity)               
-                .Include(a => a.Status)               
-                .Include(a => a.ActivityEngineer)     
+                    .ThenInclude(b => b.Customer)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.Warehouse)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.CorrectiveAction)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.DefectDetail)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.PartChangeMaster)
+                .Include(a => a.Warehouse)
+                .Include(a => a.Entity)
+                .Include(a => a.Status)
+                .Include(a => a.ActivityEngineer)
                 .FirstOrDefaultAsync(a => a.ActivityId == activityId);
 
             if (activity == null)
@@ -255,18 +320,35 @@ namespace LIBChallanAPIs.Repositories
                 NumberOfBatteriesOnSite = activity.NumberOfBatteriesOnSite,
                 NumberOfBatteriesOnSiteRTF = activity.NumberOfBatteriesOnSiteRTF,
                 IsActive = activity.IsActive,
+
                 Batteries = activity.Batteries.Select(b => new BatteryTranDto
                 {
                     BatteryTransId = b.BatteryTransId,
                     BatterySerial = b.BatterySerial,
                     BatteryIdInLIBSystem = b.BatteryIdInLIBSystem,
                     Barcode = b.Barcode,
+
+                    FirmwareStatusId = b.FirmwareStatusId,
+                    FirmwareStatusName = b.FirmwareStatus?.FirmwareStatusName,
+
                     CurrentStatusId = b.CurrentStatusId,
                     CurrentStatusName = b.BatteryStatus?.StatusName,
+
                     CustomerId = b.CustomerId,
                     CustomerName = b.Customer?.EntityName,
+
                     WarehouseId = b.WarehouseId,
                     WarehouseName = b.Warehouse?.WarehouseCode,
+
+                    CorrectiveActionId = b.CorrectiveActionId,
+                    CorrectiveActionName = b.CorrectiveAction?.ActionName,
+
+                    DefectTypeId = b.DefectTypeId,
+                    DefectName = b.DefectDetail?.DefectName,
+
+                    PartId = b.PartId,
+                    PartName = b.PartChangeMaster?.PartName,
+
                     IsActive = b.IsActive
                 }).ToList()
             };
@@ -274,47 +356,123 @@ namespace LIBChallanAPIs.Repositories
 
         public async Task<List<ServiceActivityDto>> GetActivitiesByUserIdAsync(string userId)
         {
-
             var activities = await _context.ServiceActivities
-         .Where(a => a.ActivityEngineerId == userId)
-         .Include(a => a.Batteries)
-         .Include(a => a.Warehouse)
-         .Include(a => a.Entity)
-         .Include(a => a.Status)
-         .Include(a => a.ActivityEngineer)
-         .ToListAsync();
+                .Where(a => a.ActivityEngineerId == userId)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.BatteryStatus)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.FirmwareStatus)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.Customer)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.Warehouse)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.CorrectiveAction)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.DefectDetail)
+                .Include(a => a.Batteries)
+                    .ThenInclude(b => b.PartChangeMaster)
+                .Include(a => a.Warehouse)
+                .Include(a => a.Entity)
+                .Include(a => a.Status)
+                .Include(a => a.ActivityEngineer)
+                .ToListAsync();
 
             return activities.Select(a => new ServiceActivityDto
             {
                 ActivityId = a.ActivityId,
                 ActivityEngineerId = a.ActivityEngineerId,
-                ActivityEngineerName = a.ActivityEngineer?.UserName, 
+                ActivityEngineerName = a.ActivityEngineer?.UserName,
                 EntityId = a.EntityId,
-                EntityName = a.Entity?.EntityName,                  
+                EntityName = a.Entity?.EntityName,
                 WarehouseId = a.WarehouseId,
-                WarehouseName = a.Warehouse?.WarehouseCode,          
+                WarehouseName = a.Warehouse?.WarehouseCode,
                 StatusId = a.StatusId,
-                StatusName = a.Status?.StatusName,                 
+                StatusName = a.Status?.StatusName,
                 ActivityDate = a.ActivityDate,
                 NumberOfBatteriesOnSite = a.NumberOfBatteriesOnSite,
                 NumberOfBatteriesOnSiteRTF = a.NumberOfBatteriesOnSiteRTF,
                 IsActive = a.IsActive,
+
                 Batteries = a.Batteries.Select(b => new BatteryTranDto
                 {
                     BatteryTransId = b.BatteryTransId,
                     BatterySerial = b.BatterySerial,
                     BatteryIdInLIBSystem = b.BatteryIdInLIBSystem,
                     Barcode = b.Barcode,
+
+                    FirmwareStatusId = b.FirmwareStatusId,
+                    FirmwareStatusName = b.FirmwareStatus?.FirmwareStatusName,
+
                     CurrentStatusId = b.CurrentStatusId,
-                    CurrentStatusName = b.BatteryStatus?.StatusName, 
+                    CurrentStatusName = b.BatteryStatus?.StatusName,
+
                     CustomerId = b.CustomerId,
-                    CustomerName = b.Customer?.EntityName,        
+                    CustomerName = b.Customer?.EntityName,
+
                     WarehouseId = b.WarehouseId,
                     WarehouseName = b.Warehouse?.WarehouseCode,
+
+                    CorrectiveActionId = b.CorrectiveActionId,
+                    CorrectiveActionName = b.CorrectiveAction?.ActionName,
+
+                    DefectTypeId = b.DefectTypeId,
+                    DefectName = b.DefectDetail?.DefectName,
+
+                    PartId = b.PartId,
+                    PartName = b.PartChangeMaster?.PartName,
+
                     IsActive = b.IsActive
                 }).ToList()
             }).ToList();
         }
-    }
 
+        public async Task<BatteryTranDto?> GetBatteryByTransIdAsync(string batteryTransId)
+        {
+            var battery = await _context.BatteryTrans
+                .Include(b => b.BatteryStatus)
+                .Include(b => b.FirmwareStatus)
+                .Include(b => b.Customer)
+                .Include(b => b.Warehouse)
+                .Include(b => b.CorrectiveAction)
+                .Include(b => b.DefectDetail)
+                .Include(b => b.PartChangeMaster)
+                .FirstOrDefaultAsync(b => b.BatteryTransId == batteryTransId);
+
+            if (battery == null)
+                return null;
+
+            return new BatteryTranDto
+            {
+                BatteryTransId = battery.BatteryTransId,
+                BatterySerial = battery.BatterySerial,
+                BatteryIdInLIBSystem = battery.BatteryIdInLIBSystem,
+                Barcode = battery.Barcode,
+
+                FirmwareStatusId = battery.FirmwareStatusId,
+                FirmwareStatusName = battery.FirmwareStatus?.FirmwareStatusName,
+
+                CurrentStatusId = battery.CurrentStatusId,
+                CurrentStatusName = battery.BatteryStatus?.StatusName,
+
+                CustomerId = battery.CustomerId,
+                CustomerName = battery.Customer?.EntityName,
+
+                WarehouseId = battery.WarehouseId,
+                WarehouseName = battery.Warehouse?.WarehouseCode,
+
+                CorrectiveActionId = battery.CorrectiveActionId,
+                CorrectiveActionName = battery.CorrectiveAction?.ActionName,
+
+                DefectTypeId = battery.DefectTypeId,
+                DefectName = battery.DefectDetail?.DefectName,
+
+                PartId = battery.PartId,
+                PartName = battery.PartChangeMaster?.PartName,
+
+                IsActive = battery.IsActive
+            };
+        }
+
+    }
 }

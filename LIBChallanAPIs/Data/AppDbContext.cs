@@ -135,6 +135,42 @@ public class AppDbContext : DbContext
             .HasPrincipalKey(e => e.EntityId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<BatteryTran>()
+            .HasOne(bt => bt.FirmwareStatus)
+            .WithMany()
+            .HasForeignKey(bt => bt.FirmwareStatusId)
+            .HasPrincipalKey(fs => fs.FirmwareStatusId);
+
+        modelBuilder.Entity<CorrectiveAction>()
+        .HasIndex(x => x.ActionId)
+        .IsUnique();
+
+        modelBuilder.Entity<DefectDetail>()
+            .HasIndex(x => x.DefectTypeId)
+            .IsUnique();
+
+        modelBuilder.Entity<PartChangeMaster>()
+            .HasIndex(x => x.PartId)
+            .IsUnique();
+
+        modelBuilder.Entity<BatteryTran>()
+            .HasOne(b => b.CorrectiveAction)
+            .WithMany()
+            .HasForeignKey(b => b.CorrectiveActionId)
+            .HasPrincipalKey(c => c.ActionId);
+
+        modelBuilder.Entity<BatteryTran>()
+            .HasOne(b => b.DefectDetail)
+            .WithMany()
+            .HasForeignKey(b => b.DefectTypeId)
+            .HasPrincipalKey(d => d.DefectTypeId);
+
+        modelBuilder.Entity<BatteryTran>()
+            .HasOne(b => b.PartChangeMaster)
+            .WithMany()
+            .HasForeignKey(b => b.PartId)
+            .HasPrincipalKey(p => p.PartId);
+
         // ============================
         // ENTITY MASTER
         // ============================

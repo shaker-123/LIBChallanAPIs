@@ -97,7 +97,7 @@ namespace LIBChallanAPIs.Migrations
                             AddressLine1 = "123, Connaught Place",
                             AddressLine2 = "Near India Gate",
                             CityId = "CTM001",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3123),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4674),
                             CreatedBy = "URR002",
                             EntityId = "ETM001",
                             EntityTypeId = "ETY002",
@@ -111,7 +111,7 @@ namespace LIBChallanAPIs.Migrations
                             AddressId = "ADR002",
                             AddressLine1 = "45, Rohini Sector 12",
                             CityId = "CTM002",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3129),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4678),
                             CreatedBy = "URR002",
                             EntityId = "ETM002",
                             EntityTypeId = "ETY002",
@@ -126,7 +126,7 @@ namespace LIBChallanAPIs.Migrations
                             AddressLine1 = "789, Andheri East",
                             AddressLine2 = "Near Chhatrapati Complex",
                             CityId = "CTM004",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3135),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4682),
                             CreatedBy = "URR002",
                             EntityId = "ETM003",
                             EntityTypeId = "ETY003",
@@ -140,7 +140,7 @@ namespace LIBChallanAPIs.Migrations
                             AddressId = "ADR004",
                             AddressLine1 = "56, Laxmi Nagar",
                             CityId = "CTM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3139),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4685),
                             CreatedBy = "URR002",
                             EntityId = "ETM004",
                             EntityTypeId = "ETY002",
@@ -154,7 +154,7 @@ namespace LIBChallanAPIs.Migrations
                             AddressId = "ADR005",
                             AddressLine1 = "22, MG Road",
                             CityId = "CTM007",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3144),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4689),
                             CreatedBy = "URR002",
                             EntityId = "ETM005",
                             EntityTypeId = "ETY001",
@@ -234,7 +234,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9557),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2417),
                             CreatedBy = "System",
                             Email = "superuser@system.com",
                             FullName = "Ids User",
@@ -247,7 +247,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9580),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2433),
                             CreatedBy = "System",
                             Email = "admin@Lib.com",
                             FullName = "Lib Admin User",
@@ -260,7 +260,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9596),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2441),
                             CreatedBy = "System",
                             Email = "akashprajapati@system.com",
                             FullName = "Mr. Akash Prajapati",
@@ -273,7 +273,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9616),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2448),
                             CreatedBy = "System",
                             Email = "akashyadav@system.com",
                             FullName = "Mr. Akash Yadav",
@@ -286,7 +286,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9625),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2455),
                             CreatedBy = "System",
                             Email = "akhilshukla@system.com",
                             FullName = "Mr. Akhil Shukla",
@@ -299,7 +299,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9640),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2462),
                             CreatedBy = "System",
                             Email = "arifiqwal@system.com",
                             FullName = "Mr. Arif Iqwal",
@@ -312,7 +312,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9656),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2469),
                             CreatedBy = "System",
                             Email = "babu@system.com",
                             FullName = "Mr. Babu",
@@ -325,7 +325,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9665),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2480),
                             CreatedBy = "System",
                             Email = "deepakrajput@system.com",
                             FullName = "Mr. Deepak Rajput",
@@ -338,7 +338,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9674),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2487),
                             CreatedBy = "System",
                             Email = "devendrakumar1@system.com",
                             FullName = "Mr. Devendra Kumar",
@@ -351,7 +351,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9684),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2494),
                             CreatedBy = "System",
                             Email = "gauravkumar@system.com",
                             FullName = "Mr. Gaurav Kumar",
@@ -364,7 +364,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9692),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2501),
                             CreatedBy = "System",
                             Email = "ketangupta@system.com",
                             FullName = "Mr. Ketan Gupta",
@@ -377,7 +377,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9701),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2507),
                             CreatedBy = "System",
                             Email = "manishkumar@system.com",
                             FullName = "Mr. Manish Kumar",
@@ -390,7 +390,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9710),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2514),
                             CreatedBy = "System",
                             Email = "pradeepkumar@system.com",
                             FullName = "Mr. Pradeep Kumar",
@@ -403,7 +403,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9719),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2521),
                             CreatedBy = "System",
                             Email = "rajnimore@system.com",
                             FullName = "Mr. Raj Nimore",
@@ -416,7 +416,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9729),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2528),
                             CreatedBy = "System",
                             Email = "rampandey@system.com",
                             FullName = "Mr. Ram Pandey",
@@ -429,7 +429,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9738),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2534),
                             CreatedBy = "System",
                             Email = "salaudinansari@system.com",
                             FullName = "Mr. Salaudin Ansari",
@@ -442,7 +442,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9878),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2541),
                             CreatedBy = "System",
                             Email = "sameersabane@system.com",
                             FullName = "Mr. Sameer Sabane",
@@ -455,7 +455,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9887),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2553),
                             CreatedBy = "System",
                             Email = "shivendrasingh@system.com",
                             FullName = "Mr. Shivendra Singh",
@@ -468,7 +468,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9896),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2559),
                             CreatedBy = "System",
                             Email = "vivekshukla@system.com",
                             FullName = "Mr. Vivek Shukla",
@@ -481,7 +481,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9905),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2581),
                             CreatedBy = "System",
                             Email = "abhishekkumar@system.com",
                             FullName = "Mr. Abhishek Kumar",
@@ -494,7 +494,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9915),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2588),
                             CreatedBy = "System",
                             Email = "devendrakumar2@system.com",
                             FullName = "Mr. Devendra Kumar",
@@ -507,7 +507,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9925),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2595),
                             CreatedBy = "System",
                             Email = "nikhishukla@system.com",
                             FullName = "Mr. Nikhil Shukla",
@@ -520,7 +520,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9934),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2602),
                             CreatedBy = "System",
                             Email = "rajthakur@system.com",
                             FullName = "Mr. Raj Thakur",
@@ -533,7 +533,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9944),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2609),
                             CreatedBy = "System",
                             Email = "shivendrasingh2@system.com",
                             FullName = "Mr. Shivendra Singh",
@@ -546,7 +546,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9953),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2616),
                             CreatedBy = "System",
                             Email = "shobhitsingh@system.com",
                             FullName = "Mr. Shobhit Singh",
@@ -559,7 +559,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9962),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2622),
                             CreatedBy = "System",
                             Email = "tausifansari@system.com",
                             FullName = "Mr. Tausif Ansari",
@@ -572,7 +572,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9971),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2629),
                             CreatedBy = "System",
                             Email = "mukulyadav@system.com",
                             FullName = "Mr. Mukul Yadav",
@@ -585,7 +585,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 28,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9980),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2636),
                             CreatedBy = "System",
                             Email = "vicky@system.com",
                             FullName = "Mr. Vicky",
@@ -598,7 +598,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 29,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 547, DateTimeKind.Utc).AddTicks(9989),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2647),
                             CreatedBy = "System",
                             Email = "thakursahab@system.com",
                             FullName = "Mr. Thakur Sahab",
@@ -611,7 +611,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 30,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(15),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2680),
                             CreatedBy = "System",
                             Email = "yatishraj@system.com",
                             FullName = "Mr. Yatish Raj",
@@ -624,7 +624,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 31,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(26),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2688),
                             CreatedBy = "System",
                             Email = "shravankumarprajapati@system.com",
                             FullName = "Mr. Shravan Kumar Prajapati",
@@ -637,7 +637,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 32,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(36),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2695),
                             CreatedBy = "System",
                             Email = "amanjaiswal@system.com",
                             FullName = "Mr. Aman Jaiswal",
@@ -650,7 +650,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 33,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(46),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2701),
                             CreatedBy = "System",
                             Email = "shailendra@system.com",
                             FullName = "Mr. Shailendra",
@@ -706,7 +706,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3312),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4921),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "ACT001",
@@ -715,7 +715,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3317),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4925),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "ACT002",
@@ -724,7 +724,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3320),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4928),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "ACT003",
@@ -772,7 +772,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2267),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4035),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "BST001",
@@ -781,7 +781,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2271),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4038),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "BST002",
@@ -790,7 +790,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2274),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4040),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "BST003",
@@ -799,7 +799,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2277),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4043),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "BST004",
@@ -808,7 +808,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2280),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4046),
                             CreatedBy = "URR002",
                             IsActive = true,
                             StatusId = "BST005",
@@ -847,6 +847,10 @@ namespace LIBChallanAPIs.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<string>("CorrectiveActionId")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -863,8 +867,21 @@ namespace LIBChallanAPIs.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<string>("DefectTypeId")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("FirmwareStatusId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("PartId")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -881,9 +898,17 @@ namespace LIBChallanAPIs.Migrations
 
                     b.HasIndex("ActivityId");
 
+                    b.HasIndex("CorrectiveActionId");
+
                     b.HasIndex("CurrentStatusId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("DefectTypeId");
+
+                    b.HasIndex("FirmwareStatusId");
+
+                    b.HasIndex("PartId");
 
                     b.HasIndex("WarehouseId");
 
@@ -950,7 +975,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "011",
                             CityId = "CTM001",
                             CityName = "New Delhi",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1356),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3424),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "110001",
@@ -962,7 +987,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "011",
                             CityId = "CTM002",
                             CityName = "North Delhi",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1367),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3441),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "110007",
@@ -974,7 +999,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "011",
                             CityId = "CTM003",
                             CityName = "South Delhi",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1372),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3444),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "110016",
@@ -986,7 +1011,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "022",
                             CityId = "CTM004",
                             CityName = "Mumbai",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1376),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3447),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "400001",
@@ -998,7 +1023,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "020",
                             CityId = "CTM005",
                             CityName = "Pune",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1380),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3450),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "411001",
@@ -1010,7 +1035,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0712",
                             CityId = "CTM006",
                             CityName = "Nagpur",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1387),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3454),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "440001",
@@ -1022,7 +1047,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "080",
                             CityId = "CTM007",
                             CityName = "Bengaluru",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1391),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3457),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "560001",
@@ -1034,7 +1059,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0821",
                             CityId = "CTM008",
                             CityName = "Mysuru",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1394),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3460),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "570001",
@@ -1046,7 +1071,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "044",
                             CityId = "CTM009",
                             CityName = "Chennai",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1398),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3463),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "600001",
@@ -1058,7 +1083,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0422",
                             CityId = "CTM010",
                             CityName = "Coimbatore",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1406),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3468),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "641001",
@@ -1070,7 +1095,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "079",
                             CityId = "CTM011",
                             CityName = "Ahmedabad",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1410),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3471),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "380001",
@@ -1082,7 +1107,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0261",
                             CityId = "CTM012",
                             CityName = "Surat",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1414),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3474),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "395003",
@@ -1094,7 +1119,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "033",
                             CityId = "CTM013",
                             CityName = "Kolkata",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1418),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3477),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "700001",
@@ -1106,7 +1131,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0522",
                             CityId = "CTM014",
                             CityName = "Lucknow",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1422),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3480),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "226001",
@@ -1118,7 +1143,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0512",
                             CityId = "CTM015",
                             CityName = "Kanpur",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1426),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3483),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "208001",
@@ -1130,7 +1155,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "040",
                             CityId = "CTM016",
                             CityName = "Hyderabad",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1430),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3490),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "500001",
@@ -1142,7 +1167,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0141",
                             CityId = "CTM017",
                             CityName = "Jaipur",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1434),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3493),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "302001",
@@ -1154,7 +1179,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0755",
                             CityId = "CTM018",
                             CityName = "Bhopal",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1441),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3497),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "462001",
@@ -1166,7 +1191,7 @@ namespace LIBChallanAPIs.Migrations
                             AreaCode = "0731",
                             CityId = "CTM019",
                             CityName = "Indore",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1445),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3500),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PostalCode = "452001",
@@ -1184,7 +1209,8 @@ namespace LIBChallanAPIs.Migrations
 
                     b.Property<string>("ActionId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ActionName")
                         .IsRequired()
@@ -1207,6 +1233,9 @@ namespace LIBChallanAPIs.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ActionId")
+                        .IsUnique();
+
                     b.ToTable("CorrectiveActions");
 
                     b.HasData(
@@ -1215,7 +1244,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 1,
                             ActionId = "CRA001",
                             ActionName = "Anderson connector screw fix",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1630),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3648),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1224,7 +1253,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 2,
                             ActionId = "CRA002",
                             ActionName = "Battery Charged with wake up charger",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1635),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3651),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1233,7 +1262,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 3,
                             ActionId = "CRA003",
                             ActionName = "Battery wake up with the charger",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1638),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3653),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1242,7 +1271,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 4,
                             ActionId = "CRA004",
                             ActionName = "BMS reset & software update",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1641),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3655),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1251,7 +1280,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 5,
                             ActionId = "CRA005",
                             ActionName = "CAN pin fixed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1644),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3657),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1260,7 +1289,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 6,
                             ActionId = "CRA006",
                             ActionName = "Charging & Discharging done",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1647),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3660),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1269,7 +1298,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 7,
                             ActionId = "CRA007",
                             ActionName = "Handle fixed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1651),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3662),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1278,7 +1307,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 8,
                             ActionId = "CRA008",
                             ActionName = "Handle screw fixed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1655),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3664),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1287,7 +1316,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 9,
                             ActionId = "CRA009",
                             ActionName = "IOT glass changed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1659),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3666),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1296,7 +1325,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 10,
                             ActionId = "CRA010",
                             ActionName = "New connector clip fixed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1663),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3668),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1305,7 +1334,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 11,
                             ActionId = "CRA011",
                             ActionName = "New Handle fixed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1665),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3670),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1314,7 +1343,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 12,
                             ActionId = "CRA012",
                             ActionName = "RTF",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1668),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3672),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1323,7 +1352,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 13,
                             ActionId = "CRA013",
                             ActionName = "Dead Battery",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1672),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3679),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1332,7 +1361,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 14,
                             ActionId = "CRA014",
                             ActionName = "Top Screw fixed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1675),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3681),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1341,7 +1370,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 15,
                             ActionId = "CRA015",
                             ActionName = "NTC fixed / Replaced",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1678),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3683),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1350,7 +1379,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 16,
                             ActionId = "CRA016",
                             ActionName = "CAN wire fixed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1681),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3685),
                             CreatedBy = "URR002",
                             IsActive = true
                         },
@@ -1359,7 +1388,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 17,
                             ActionId = "CRA017",
                             ActionName = "Fuse changed",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1684),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3688),
                             CreatedBy = "URR002",
                             IsActive = true
                         });
@@ -1690,13 +1719,16 @@ namespace LIBChallanAPIs.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DefectTypeId")
+                        .IsUnique();
+
                     b.ToTable("DefectDetails");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2061),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3881),
                             CreatedBy = "URR002",
                             DefectName = "No issues",
                             DefectTypeId = "DDT001",
@@ -1705,7 +1737,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2065),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3884),
                             CreatedBy = "URR002",
                             DefectName = "CAN Pin Backout",
                             DefectTypeId = "DDT002",
@@ -1714,7 +1746,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2068),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3886),
                             CreatedBy = "URR002",
                             DefectName = "NTC Issue",
                             DefectTypeId = "DDT003",
@@ -1723,7 +1755,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2071),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3888),
                             CreatedBy = "URR002",
                             DefectName = "Cell Unbalance",
                             DefectTypeId = "DDT004",
@@ -1732,7 +1764,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2074),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3891),
                             CreatedBy = "URR002",
                             DefectName = "Battery Deep Discharge",
                             DefectTypeId = "DDT005",
@@ -1741,7 +1773,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2078),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3893),
                             CreatedBy = "URR002",
                             DefectName = "BMS Issue",
                             DefectTypeId = "DDT006",
@@ -1750,7 +1782,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2081),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3895),
                             CreatedBy = "URR002",
                             DefectName = "String Issue",
                             DefectTypeId = "DDT007",
@@ -1759,7 +1791,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2084),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3897),
                             CreatedBy = "URR002",
                             DefectName = "Handle Pin Missing",
                             DefectTypeId = "DDT008",
@@ -1768,7 +1800,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2087),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3900),
                             CreatedBy = "URR002",
                             DefectName = "Already Marked as RTF",
                             DefectTypeId = "DDT009",
@@ -1777,7 +1809,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2090),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3902),
                             CreatedBy = "URR002",
                             DefectName = "IOT Issue",
                             DefectTypeId = "DDT010",
@@ -1786,7 +1818,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2094),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3904),
                             CreatedBy = "URR002",
                             DefectName = "IOT Glass Damage",
                             DefectTypeId = "DDT011",
@@ -1795,7 +1827,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2096),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3906),
                             CreatedBy = "URR002",
                             DefectName = "CAN Communication Issue",
                             DefectTypeId = "DDT012",
@@ -1804,7 +1836,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2099),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3908),
                             CreatedBy = "URR002",
                             DefectName = "Handle Missing",
                             DefectTypeId = "DDT013",
@@ -1813,7 +1845,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2102),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3911),
                             CreatedBy = "URR002",
                             DefectName = "CAN Wire Damage",
                             DefectTypeId = "DDT014",
@@ -1822,7 +1854,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2106),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3913),
                             CreatedBy = "URR002",
                             DefectName = "Water Ingress",
                             DefectTypeId = "DDT015",
@@ -1831,7 +1863,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2109),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3915),
                             CreatedBy = "URR002",
                             DefectName = "Fuse Burn",
                             DefectTypeId = "DDT016",
@@ -1840,7 +1872,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2112),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3917),
                             CreatedBy = "URR002",
                             DefectName = "Connector Clip Missing",
                             DefectTypeId = "DDT017",
@@ -1849,7 +1881,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2115),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3919),
                             CreatedBy = "URR002",
                             DefectName = "Connector Damaged",
                             DefectTypeId = "DDT018",
@@ -1858,7 +1890,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2118),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3926),
                             CreatedBy = "URR002",
                             DefectName = "CAN Wire Cut",
                             DefectTypeId = "DDT019",
@@ -1867,7 +1899,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2120),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3928),
                             CreatedBy = "URR002",
                             DefectName = "Unbalance & IOT Glass Damage",
                             DefectTypeId = "DDT020",
@@ -1876,7 +1908,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2123),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3930),
                             CreatedBy = "URR002",
                             DefectName = "Top Cover Screw Missing",
                             DefectTypeId = "DDT021",
@@ -1885,7 +1917,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2126),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3933),
                             CreatedBy = "URR002",
                             DefectName = "BMS Sleep Mode",
                             DefectTypeId = "DDT022",
@@ -1894,7 +1926,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2129),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3935),
                             CreatedBy = "URR002",
                             DefectName = "CAN Wire Broken",
                             DefectTypeId = "DDT023",
@@ -1903,7 +1935,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2132),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3937),
                             CreatedBy = "URR002",
                             DefectName = "Anderson Connector Burn",
                             DefectTypeId = "DDT024",
@@ -1912,7 +1944,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2134),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3939),
                             CreatedBy = "URR002",
                             DefectName = "Anderson Connector Screw Missing",
                             DefectTypeId = "DDT025",
@@ -1921,7 +1953,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2137),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3941),
                             CreatedBy = "URR002",
                             DefectName = "Battery is Tempered",
                             DefectTypeId = "DDT026",
@@ -1930,7 +1962,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2140),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3943),
                             CreatedBy = "URR002",
                             DefectName = "Already Repaired by IA",
                             DefectTypeId = "DDT027",
@@ -2475,7 +2507,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2460),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4189),
                             CreatedBy = "URR002",
                             GSTSlabId = "TXS001",
                             IsActive = true,
@@ -2485,7 +2517,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2470),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4204),
                             CreatedBy = "URR002",
                             GSTSlabId = "TXS002",
                             IsActive = true,
@@ -2495,7 +2527,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2474),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4207),
                             CreatedBy = "URR002",
                             GSTSlabId = "TXS003",
                             IsActive = true,
@@ -2505,7 +2537,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2479),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4210),
                             CreatedBy = "URR002",
                             GSTSlabId = "TXS004",
                             IsActive = true,
@@ -2515,7 +2547,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(2483),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4213),
                             CreatedBy = "URR002",
                             GSTSlabId = "TXS005",
                             IsActive = true,
@@ -2658,13 +2690,16 @@ namespace LIBChallanAPIs.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PartId")
+                        .IsUnique();
+
                     b.ToTable("PartChangeMasters");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1935),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3772),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM001",
@@ -2673,7 +2708,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1940),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3776),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM002",
@@ -2682,7 +2717,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1944),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3778),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM003",
@@ -2691,7 +2726,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1947),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3781),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM004",
@@ -2700,7 +2735,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1950),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3783),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM005",
@@ -2709,7 +2744,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1953),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3797),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM006",
@@ -2718,7 +2753,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1956),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3799),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM007",
@@ -2727,7 +2762,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1959),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3801),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM008",
@@ -2736,7 +2771,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1962),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3803),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM009",
@@ -2745,7 +2780,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1965),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3805),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM010",
@@ -2754,7 +2789,7 @@ namespace LIBChallanAPIs.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(1967),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(3808),
                             CreatedBy = "URR002",
                             IsActive = true,
                             PartId = "PCM011",
@@ -3391,7 +3426,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 1,
                             CINNumber = "L12345MH2020PTC123456",
                             CityId = "CTM004",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3229),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4744),
                             CreatedBy = "URR002",
                             EntityId = "ETM001",
                             GSTINNumber = "27ABCDE1234F1Z5",
@@ -3404,7 +3439,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 2,
                             CINNumber = "L23456DL2021PTC654321",
                             CityId = "CTM001",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3236),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4749),
                             CreatedBy = "URR002",
                             EntityId = "ETM002",
                             GSTINNumber = "29ABCDE5678G1Z6",
@@ -3417,7 +3452,7 @@ namespace LIBChallanAPIs.Migrations
                             Id = 5,
                             CINNumber = "L56789TS2024PTC555666",
                             CityId = "CTM016",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3240),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4753),
                             CreatedBy = "URR002",
                             EntityId = "ETM002",
                             GSTINNumber = "36ABCDE7777K1Z9",
@@ -3535,231 +3570,231 @@ namespace LIBChallanAPIs.Migrations
                         {
                             UserRefId = 1,
                             RoleId = "RLM001",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(270),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2825),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 2,
                             RoleId = "RLM002",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(274),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2828),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 3,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(277),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2830),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 4,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(280),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2832),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 5,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(283),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2835),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 6,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(285),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2837),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 7,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(288),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2839),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 8,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(290),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2841),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 9,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(293),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2843),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 10,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(295),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2845),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 11,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(298),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2852),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 12,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(300),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2853),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 13,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(303),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2855),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 14,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(306),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2857),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 15,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(308),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2859),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 16,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(310),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2860),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 17,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(313),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2862),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 18,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(315),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2864),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 19,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(318),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2866),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 20,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(483),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2868),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 21,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(487),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2869),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 22,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(490),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2871),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 23,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(492),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2873),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 24,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(494),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2875),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 25,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(497),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2876),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 26,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(500),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2878),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 27,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(502),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2880),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 28,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(505),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2882),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 29,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(507),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2883),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 30,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(510),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2885),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 31,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(512),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2887),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 32,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(514),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2889),
                             CreatedBy = "URR002"
                         },
                         new
                         {
                             UserRefId = 33,
                             RoleId = "RLM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(516),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(2901),
                             CreatedBy = "URR002"
                         });
                 });
@@ -3821,7 +3856,7 @@ namespace LIBChallanAPIs.Migrations
                         {
                             Id = 1,
                             CityId = "CTM001",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3040),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4617),
                             CreatedBy = "URR002",
                             EntityId = "ETM001",
                             IsActive = true,
@@ -3832,7 +3867,7 @@ namespace LIBChallanAPIs.Migrations
                         {
                             Id = 2,
                             CityId = "CTM002",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3045),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4620),
                             CreatedBy = "URR002",
                             EntityId = "ETM002",
                             IsActive = true,
@@ -3843,7 +3878,7 @@ namespace LIBChallanAPIs.Migrations
                         {
                             Id = 3,
                             CityId = "CTM003",
-                            CreatedAt = new DateTime(2026, 2, 17, 6, 42, 6, 548, DateTimeKind.Utc).AddTicks(3049),
+                            CreatedAt = new DateTime(2026, 2, 17, 8, 4, 59, 95, DateTimeKind.Utc).AddTicks(4623),
                             CreatedBy = "URR002",
                             EntityId = "ETM003",
                             IsActive = false,
@@ -3904,6 +3939,11 @@ namespace LIBChallanAPIs.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LIBChallanAPIs.Models.CorrectiveAction", "CorrectiveAction")
+                        .WithMany()
+                        .HasForeignKey("CorrectiveActionId")
+                        .HasPrincipalKey("ActionId");
+
                     b.HasOne("LIBChallanAPIs.Models.BatteryStatus", "BatteryStatus")
                         .WithMany()
                         .HasForeignKey("CurrentStatusId")
@@ -3918,6 +3958,23 @@ namespace LIBChallanAPIs.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("LIBChallanAPIs.Models.DefectDetail", "DefectDetail")
+                        .WithMany()
+                        .HasForeignKey("DefectTypeId")
+                        .HasPrincipalKey("DefectTypeId");
+
+                    b.HasOne("LIBChallanAPIs.Models.FirmwareStatus", "FirmwareStatus")
+                        .WithMany()
+                        .HasForeignKey("FirmwareStatusId")
+                        .HasPrincipalKey("FirmwareStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LIBChallanAPIs.Models.PartChangeMaster", "PartChangeMaster")
+                        .WithMany()
+                        .HasForeignKey("PartId")
+                        .HasPrincipalKey("PartId");
+
                     b.HasOne("Warehouse", "Warehouse")
                         .WithMany()
                         .HasForeignKey("WarehouseId")
@@ -3929,7 +3986,15 @@ namespace LIBChallanAPIs.Migrations
 
                     b.Navigation("BatteryStatus");
 
+                    b.Navigation("CorrectiveAction");
+
                     b.Navigation("Customer");
+
+                    b.Navigation("DefectDetail");
+
+                    b.Navigation("FirmwareStatus");
+
+                    b.Navigation("PartChangeMaster");
 
                     b.Navigation("Warehouse");
                 });

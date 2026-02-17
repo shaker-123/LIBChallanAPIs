@@ -8,6 +8,8 @@ namespace LIBChallanAPIs.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(10)]
         public string ActionId { get; set; } = string.Empty;
 
 

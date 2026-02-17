@@ -40,7 +40,7 @@ namespace LIBChallanAPIs.Controllers
         }
 
         [HttpPatch("{activityId}/batteries/{batterySerial}")]
-        public async Task<IActionResult> UpdateSingleBattery([FromQuery] string activityId, string batterySerial, [FromBody] BatteryTranUpdateDto batteryDto)
+        public async Task<IActionResult> UpdateSingleBattery([FromQuery] string activityId, string batteryId, [FromBody] BatteryTranUpdateDto batteryDto)
         {
             var userId = User.FindFirst("UserId")?.Value;
             if (string.IsNullOrEmpty(userId))
@@ -48,7 +48,7 @@ namespace LIBChallanAPIs.Controllers
 
             try
             {
-                await _repository.UpdateSingleBatteryAsync(activityId, batterySerial, batteryDto);
+                await _repository.UpdateSingleBatteryAsync(batteryId, batteryDto);
                 return Ok(new { Message = "Battery updated successfully" });
             }
             catch (KeyNotFoundException ex)

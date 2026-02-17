@@ -12,18 +12,16 @@ namespace LIBChallanAPIs.Models
         public string BatteryTransId { get; set; }
 
         [Required, MaxLength(10)]
-        public string ActivityId { get; set; } = string.Empty; 
+        public string ActivityId { get; set; } = string.Empty;
 
         [Required, MaxLength(10)]
         public string CurrentStatusId { get; set; } = string.Empty;
 
         [Required, MaxLength(10)]
-        public string CustomerId { get; set; } = string.Empty; 
+        public string CustomerId { get; set; } = string.Empty;
 
         [Required, MaxLength(10)]
         public string WarehouseId { get; set; } = string.Empty;
-
-
 
         [Required, MaxLength(100)]
         public string BatterySerial { get; set; } = string.Empty;
@@ -36,6 +34,18 @@ namespace LIBChallanAPIs.Models
 
         public bool IsActive { get; set; } = true;
 
+        [Required, MaxLength(10)]
+        public string FirmwareStatusId { get; set; } = string.Empty;
+
+
+        [MaxLength(10)]
+        public string? CorrectiveActionId { get; set; }
+
+        [MaxLength(10)]
+        public string? DefectTypeId { get; set; }
+
+        [MaxLength(10)]
+        public string? PartId { get; set; }
 
 
         [ForeignKey(nameof(ActivityId))]
@@ -49,5 +59,18 @@ namespace LIBChallanAPIs.Models
 
         [ForeignKey(nameof(WarehouseId))]
         public virtual Warehouse? Warehouse { get; set; }
+
+        [ForeignKey(nameof(FirmwareStatusId))]
+        public virtual FirmwareStatus? FirmwareStatus { get; set; }
+
+        [ForeignKey(nameof(CorrectiveActionId))]
+        public virtual CorrectiveAction? CorrectiveAction { get; set; }
+
+        [ForeignKey(nameof(DefectTypeId))]
+        public virtual DefectDetail? DefectDetail { get; set; }
+
+        [ForeignKey(nameof(PartId))]
+        public virtual PartChangeMaster? PartChangeMaster { get; set; }
     }
+
 }

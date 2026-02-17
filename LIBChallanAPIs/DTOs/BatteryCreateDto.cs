@@ -6,6 +6,12 @@
         public string CurrentStatusId { get; set; } = string.Empty;
         public string CustomerId { get; set; } = string.Empty;
         public string WarehouseId { get; set; } = string.Empty;
+        public string FirmwareStatusId { get; set; } = string.Empty;
+
+        public string CorrectiveActionId { get; set; } = string.Empty;
+
+        public string DefectTypeId { get; set; } = string.Empty;
+        public string PartId { get; set; } = string.Empty;
 
         public string Barcode { get; set; } = null!;
         public string BatteryIdInLIBSystem { get; set; } = null!;
